@@ -22,9 +22,20 @@
   },
   "overrides": [
     {
+      // src/elements is vendored from the shadcn registry and re-scaffolded by
+      // the CLI. It is formatted to house style so diffs stay readable, but
+      // authoring rules that would force a fork are relaxed here:
+      //
+      //   noLeakedRender  - false positive, the guards are typed booleans
+      //
+      // The 200-line cap is likewise not applied to this directory
+      // (dropdown-menu is a ~257-line compound component upstream).
       "includes": ["src/elements/**"],
       "linter": {
         "rules": {
+          "suspicious": {
+            "noLeakedRender": "off"
+          },
           "style": {
             "noRestrictedImports": {
               "level": "error",
