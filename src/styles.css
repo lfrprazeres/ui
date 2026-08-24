@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "./tokens/index.css";
+
+@source "./**/*.{ts,tsx}";
+
+@layer base {
+  * {
+    outline-color: color-mix(in oklab, var(--color-ring) 50%, transparent);
+    border-color: var(--color-border);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+  }
+}
