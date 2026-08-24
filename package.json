@@ -24,6 +24,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./elements": "./dist/elements/index.js",
+    "./components": "./dist/components/index.js",
     "./styles.css": "./dist/styles.css",
     "./tokens/*": "./dist/tokens/*"
   },
@@ -49,6 +50,7 @@
     "lucide-react": "^1.34.0",
     "motion": "^13.1.1",
     "radix-ui": "^1.6.7",
+    "sonner": "^2.0.8",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {

@@ -27,7 +27,15 @@
       // them, and the module-graph cost the rule warns about is real but
       // mitigated on the consumer side by optimizePackageImports, which the
       // README documents. Every other barrel in the repo stays banned.
-      "includes": ["src/index.ts", "src/elements/index.ts"],
+      // sonner.tsx is here for a different reason: it re-exports `toast` so
+      // consumers do not have to install sonner themselves, which under pnpm's
+      // strict node_modules they could not import transitively anyway.
+      "includes": [
+        "src/index.ts",
+        "src/elements/index.ts",
+        "src/components/index.ts",
+        "src/elements/sonner.tsx"
+      ],
       "linter": {
         "rules": {
           "performance": {

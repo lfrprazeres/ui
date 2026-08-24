@@ -6,5 +6,6 @@
  * keep the whole module graph out of the dev-server module map.
  */
 
+export * from "./components";
 export * from "./elements";
 export { cn } from "./lib/cn";
