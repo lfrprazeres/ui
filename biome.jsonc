@@ -1,0 +1,45 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.10/schema.json",
+  "extends": ["ultracite/biome/core", "ultracite/biome/react"],
+  "files": {
+    "includes": ["!dist", "!storybook-static", "!coverage"]
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "paths": {
+              "../components": "Layering violation: elements must not import from components. Dependency direction is one-way (elements -> components -> features).",
+              "../components/index": "Layering violation: elements must not import from components.",
+              "@/components": "Layering violation: elements must not import from components."
+            }
+          }
+        }
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["src/elements/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": ["**/components/**", "../components*"],
+                    "message": "Layering violation: src/elements must not import from src/components. Elements are the floor of the system."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
