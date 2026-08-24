@@ -22,6 +22,21 @@
   },
   "overrides": [
     {
+      // These two files are the package's declared entry points in the exports
+      // map, not internal convenience imports. A published library has to have
+      // them, and the module-graph cost the rule warns about is real but
+      // mitigated on the consumer side by optimizePackageImports, which the
+      // README documents. Every other barrel in the repo stays banned.
+      "includes": ["src/index.ts", "src/elements/index.ts"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noBarrelFile": "off"
+          }
+        }
+      }
+    },
+    {
       // src/elements is vendored from the shadcn registry and re-scaffolded by
       // the CLI. It is formatted to house style so diffs stay readable, but
       // authoring rules that would force a fork are relaxed here:

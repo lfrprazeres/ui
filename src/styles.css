@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "./tokens/index.css";
 
-@source "./**/*.{ts,tsx}";
+@source "./**/*.{ts,tsx,js}";
 
 @layer base {
   * {
