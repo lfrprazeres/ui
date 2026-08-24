@@ -39,7 +39,7 @@
   --chart-2: var(--fuchsia-500);
   --chart-3: var(--violet-500);
   --chart-4: var(--emerald-500);
-  --chart-5: var(--amber-500);
+  --chart-5: var(--gold-500);
   --sidebar: var(--slate-100);
   --sidebar-foreground: var(--slate-950);
   --sidebar-primary: var(--cyan-700);
@@ -77,7 +77,7 @@
   --chart-2: var(--fuchsia-400);
   --chart-3: var(--violet-400);
   --chart-4: var(--emerald-400);
-  --chart-5: var(--amber-300);
+  --chart-5: var(--gold-300);
   --sidebar: var(--slate-900);
   --sidebar-foreground: var(--cyan-100);
   --sidebar-primary: var(--cyan-400);

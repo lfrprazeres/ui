@@ -18,9 +18,9 @@ const PALETTES = [
     note: "Neutral. Colour only, scales untouched.",
   },
   {
-    className: "palette-amber",
-    name: "Amber",
-    note: "Warm gold on sand. Colour only.",
+    className: "palette-gold",
+    name: "Gold",
+    note: "Warm antique gold on sand. Colour only.",
   },
   {
     className: "palette-cyberpunk",

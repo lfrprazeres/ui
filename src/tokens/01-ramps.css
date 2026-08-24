@@ -52,18 +52,18 @@
   --sand-900: oklch(0.16 0.012 62);
   --sand-950: oklch(0.11 0.01 62);
 
-  /* Amber, warm accent. */
-  --amber-50: oklch(0.97 0.025 85);
-  --amber-100: oklch(0.93 0.04 85);
-  --amber-200: oklch(0.85 0.07 82);
-  --amber-300: oklch(0.75 0.1 80);
-  --amber-400: oklch(0.68 0.115 78);
-  --amber-500: oklch(0.62 0.115 78);
-  --amber-600: oklch(0.54 0.105 76);
-  --amber-700: oklch(0.46 0.09 74);
-  --amber-800: oklch(0.38 0.075 72);
-  --amber-900: oklch(0.3 0.06 72);
-  --amber-950: oklch(0.22 0.045 72);
+  /* Gold, warm antique accent. Deliberately not Tailwind amber. */
+  --gold-50: oklch(0.97 0.025 85);
+  --gold-100: oklch(0.93 0.04 85);
+  --gold-200: oklch(0.85 0.07 82);
+  --gold-300: oklch(0.75 0.1 80);
+  --gold-400: oklch(0.68 0.115 78);
+  --gold-500: oklch(0.62 0.115 78);
+  --gold-600: oklch(0.54 0.105 76);
+  --gold-700: oklch(0.46 0.09 74);
+  --gold-800: oklch(0.38 0.075 72);
+  --gold-900: oklch(0.3 0.06 72);
+  --gold-950: oklch(0.22 0.045 72);
 
   /* Cyan. */
   --cyan-50: oklch(0.984 0.019 200);

@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react-vite";
-import "../src/styles.css";
+import "./docs.css";
 
 const DARK_CLASS = "dark";
 
@@ -8,12 +8,12 @@ const DARK_CLASS = "dark";
  * class, since it lives at :root.
  */
 const PALETTE_CLASSES = [
-  "palette-amber",
+  "palette-gold",
   "palette-cyberpunk",
   "palette-minimal",
 ] as const;
 
-const PALETTES = ["base", "amber", "cyberpunk", "minimal"] as const;
+const PALETTES = ["base", "gold", "cyberpunk", "minimal"] as const;
 const SCHEMES = ["light", "dark"] as const;
 
 type Palette = (typeof PALETTES)[number];
@@ -49,7 +49,7 @@ const preview: Preview = {
         icon: "paintbrush",
         items: [
           { title: "Base", value: "base" },
-          { title: "Amber", value: "amber" },
+          { title: "Gold", value: "gold" },
           { title: "Cyberpunk", value: "cyberpunk" },
           { title: "Minimal", value: "minimal" },
         ],

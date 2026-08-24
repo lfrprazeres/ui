@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Ramp, Section, SwatchGrid } from "./token-table";
+import { Ramp, Section, SwatchGrid, TailwindRamp } from "./token-table";
 
 const NEUTRAL_STEPS = [
   "0",
@@ -16,7 +16,39 @@ const NEUTRAL_STEPS = [
   "950",
 ];
 
-const WARM_STEPS = NEUTRAL_STEPS.slice(1);
+const STEPS = NEUTRAL_STEPS.slice(1);
+
+const LIBRARY_NEUTRALS = ["neutral", "slate", "sand"];
+const LIBRARY_CHROMATIC = [
+  "gold",
+  "rose",
+  "emerald",
+  "cyan",
+  "blue",
+  "violet",
+  "fuchsia",
+];
+
+const TAILWIND_NEUTRALS = ["slate", "gray", "zinc", "neutral", "stone"];
+const TAILWIND_CHROMATIC = [
+  "red",
+  "orange",
+  "amber",
+  "yellow",
+  "lime",
+  "green",
+  "emerald",
+  "teal",
+  "cyan",
+  "sky",
+  "blue",
+  "indigo",
+  "violet",
+  "purple",
+  "fuchsia",
+  "pink",
+  "rose",
+];
 
 const SURFACES = [
   "--background",
@@ -41,19 +73,7 @@ const ROLES = [
   "--destructive",
 ];
 
-const NEUTRAL_RAMPS = ["neutral", "slate", "sand"];
-const CHROMATIC_RAMPS = [
-  "amber",
-  "rose",
-  "emerald",
-  "cyan",
-  "blue",
-  "violet",
-  "fuchsia",
-];
-
 const OUTLINES = ["--border", "--input", "--ring"];
-
 const CHARTS = [
   "--chart-1",
   "--chart-2",
@@ -61,9 +81,7 @@ const CHARTS = [
   "--chart-4",
   "--chart-5",
 ];
-
 const EXTENSIONS = ["--positive", "--negative"];
-
 const SIDEBAR = [
   "--sidebar",
   "--sidebar-foreground",
@@ -79,32 +97,47 @@ function ColourFoundations() {
   return (
     <div className="p-6">
       <h1 className="mb-2 font-semibold text-2xl text-foreground">Colour</h1>
-      <p className="mb-8 max-w-2xl text-muted-foreground text-sm">
+      <p className="mb-8 max-w-3xl text-muted-foreground text-sm">
         Three tiers. Primitives are raw ramps with no meaning. The semantic tier
-        below is the public contract every component reads, and it is defined
-        entirely as references into the primitives. Switch the palette in the
-        toolbar to watch the semantic values change while the ramps stay put.
+        is the public contract every component reads, defined entirely as
+        references into primitives. Switch the palette in the toolbar to watch
+        semantic values change while the ramps stay put.
       </p>
 
       <Section
-        description="Raw scales. No component references these directly, and no palette is obliged to use all of them. Only neutral carries a 0 step."
-        title="Primitive ramps: neutral"
+        description="Shipped by the library as plain custom properties, so they are always available to palettes at var(--name-step). Only neutral carries a 0 step."
+        title="Library ramps: neutral"
       >
-        {NEUTRAL_RAMPS.map((name) => (
+        {LIBRARY_NEUTRALS.map((name) => (
           <Ramp
             key={name}
             name={name}
-            steps={name === "neutral" ? NEUTRAL_STEPS : WARM_STEPS}
+            steps={name === "neutral" ? NEUTRAL_STEPS : STEPS}
           />
         ))}
       </Section>
 
       <Section
-        description="Available for palettes to build on. Values follow Tailwind v4 OKLCH for perceptual evenness."
-        title="Primitive ramps: chromatic"
+        description="gold and sand are genuinely custom. The rest mirror Tailwind values under library-owned names, which is what lets a palette reference them from CSS."
+        title="Library ramps: chromatic"
       >
-        {CHROMATIC_RAMPS.map((name) => (
-          <Ramp key={name} name={name} steps={WARM_STEPS} />
+        {LIBRARY_CHROMATIC.map((name) => (
+          <Ramp key={name} name={name} steps={STEPS} />
+        ))}
+      </Section>
+
+      <Section
+        description="Tailwind's full default palette, available to any consumer as ordinary utilities such as bg-sky-500. These are NOT custom properties in the build unless something references them, so a palette cannot read them from CSS. Use the library ramps above for that."
+        title="Tailwind palette: neutral"
+      >
+        {TAILWIND_NEUTRALS.map((name) => (
+          <TailwindRamp key={name} name={name} steps={STEPS} />
+        ))}
+      </Section>
+
+      <Section title="Tailwind palette: chromatic">
+        {TAILWIND_CHROMATIC.map((name) => (
+          <TailwindRamp key={name} name={name} steps={STEPS} />
         ))}
       </Section>
 
@@ -137,7 +170,7 @@ function ColourFoundations() {
       </Section>
 
       <Section
-        description="Outside shadcn's contract. Added for gain and loss semantics, which shadcn has no opinion on."
+        description="Outside shadcn's contract, added for gain and loss semantics."
         title="Extensions"
       >
         <SwatchGrid tokens={EXTENSIONS} />

@@ -1,0 +1,20 @@
+/*
+ * Storybook-only stylesheet.
+ *
+ * The Foundations/Colour page documents Tailwind's full default palette
+ * alongside the library's own ramps. Two problems make that harder than it
+ * looks, and this file solves both without touching the published CSS:
+ *
+ * 1. Tailwind only emits theme variables that something references. Nothing in
+ *    the library uses --color-red-500, so it is absent from the build entirely.
+ * 2. The docs render swatches from a loop, and `bg-${name}-${step}` is invisible
+ *    to the class scanner, which reads source text rather than runtime values.
+ *
+ * `@source inline(...)` with brace expansion fixes both by generating the
+ * utilities explicitly. It costs roughly 240 extra rules, which is why it lives
+ * here and not in src/styles.css. Consumers of the package get none of it.
+ */
+
+@import "../src/styles.css";
+
+@source inline("bg-{red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose,slate,gray,zinc,neutral,stone}-{50,100,200,300,400,500,600,700,800,900,950}");

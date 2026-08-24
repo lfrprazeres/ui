@@ -1,82 +1,82 @@
 /*
- * Amber palette. Warm gold accent on sand surfaces.
+ * Gold palette. Warm antique gold accent on sand surfaces.
  *
- * Apply with class="palette-amber", plus dark for the dark variant.
+ * Apply with class="palette-gold", plus dark for the dark variant.
  * Overrides colour only. Radius, spacing and fonts stay at base values.
  */
 
-.palette-amber {
+.palette-gold {
   --background: var(--sand-50);
   --foreground: var(--sand-950);
   --card: var(--neutral-0);
   --card-foreground: var(--sand-950);
   --popover: var(--neutral-0);
   --popover-foreground: var(--sand-950);
-  --primary: var(--amber-600);
+  --primary: var(--gold-600);
   --primary-foreground: var(--sand-50);
   --secondary: var(--sand-100);
-  --secondary-foreground: var(--amber-900);
-  --tertiary: var(--amber-200);
-  --tertiary-foreground: var(--amber-950);
+  --secondary-foreground: var(--gold-900);
+  --tertiary: var(--gold-200);
+  --tertiary-foreground: var(--gold-950);
   --muted: var(--sand-100);
   --muted-foreground: var(--sand-600);
-  --accent: var(--amber-100);
-  --accent-foreground: var(--amber-900);
+  --accent: var(--gold-100);
+  --accent-foreground: var(--gold-900);
   --destructive: var(--rose-600);
   --border: var(--sand-200);
   --input: var(--sand-200);
-  --ring: var(--amber-500);
-  --chart-1: var(--amber-300);
-  --chart-2: var(--amber-500);
-  --chart-3: var(--amber-600);
-  --chart-4: var(--amber-700);
-  --chart-5: var(--amber-800);
+  --ring: var(--gold-500);
+  --chart-1: var(--gold-300);
+  --chart-2: var(--gold-500);
+  --chart-3: var(--gold-600);
+  --chart-4: var(--gold-700);
+  --chart-5: var(--gold-800);
   --sidebar: var(--sand-100);
   --sidebar-foreground: var(--sand-950);
-  --sidebar-primary: var(--amber-600);
+  --sidebar-primary: var(--gold-600);
   --sidebar-primary-foreground: var(--sand-50);
-  --sidebar-accent: var(--amber-100);
-  --sidebar-accent-foreground: var(--amber-900);
+  --sidebar-accent: var(--gold-100);
+  --sidebar-accent-foreground: var(--gold-900);
   --sidebar-border: var(--sand-200);
-  --sidebar-ring: var(--amber-500);
+  --sidebar-ring: var(--gold-500);
   --positive: var(--emerald-600);
   --negative: var(--rose-600);
 }
 
-.palette-amber.dark {
+.palette-gold.dark {
   --background: var(--sand-950);
   --foreground: var(--sand-100);
   --card: var(--sand-900);
   --card-foreground: var(--sand-100);
   --popover: var(--sand-900);
   --popover-foreground: var(--sand-100);
-  --primary: var(--amber-300);
+  --primary: var(--gold-300);
   --primary-foreground: var(--sand-950);
   --secondary: var(--sand-800);
   --secondary-foreground: var(--sand-100);
-  --tertiary: var(--amber-800);
-  --tertiary-foreground: var(--amber-100);
+  --tertiary: var(--gold-800);
+  --tertiary-foreground: var(--gold-100);
   --muted: var(--sand-800);
   --muted-foreground: var(--sand-400);
-  --accent: var(--amber-950);
-  --accent-foreground: var(--amber-100);
+  --accent: var(--gold-950);
+  --accent-foreground: var(--gold-100);
   --destructive: var(--rose-400);
   --border: var(--overlay-white-10);
   --input: var(--overlay-white-15);
-  --ring: var(--amber-400);
-  --chart-1: var(--amber-200);
-  --chart-2: var(--amber-300);
-  --chart-3: var(--amber-400);
-  --chart-4: var(--amber-500);
-  --chart-5: var(--amber-600);
+  --ring: var(--gold-400);
+  --chart-1: var(--gold-200);
+  --chart-2: var(--gold-300);
+  --chart-3: var(--gold-400);
+  --chart-4: var(--gold-500);
+  --chart-5: var(--gold-600);
   --sidebar: var(--sand-900);
   --sidebar-foreground: var(--sand-100);
-  --sidebar-primary: var(--amber-300);
+  --sidebar-primary: var(--gold-300);
   --sidebar-primary-foreground: var(--sand-950);
-  --sidebar-accent: var(--amber-950);
-  --sidebar-accent-foreground: var(--amber-100);
+  --sidebar-accent: var(--gold-950);
+  --sidebar-accent-foreground: var(--gold-100);
   --sidebar-border: var(--overlay-white-10);
-  --sidebar-ring: var(--amber-400);
+  --sidebar-ring: var(--gold-400);
   --positive: var(--emerald-400);
   --negative: var(--rose-400);
 }
