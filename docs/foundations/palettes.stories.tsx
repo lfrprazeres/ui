@@ -42,7 +42,7 @@ const PALETTES = [
 function Preview({ className, dark }: { className: string; dark: boolean }) {
   return (
     <div
-      className={`${className} ${dark ? "dark" : ""} rounded-lg border border-border bg-background p-4 font-sans`}
+      className={`${className} ${dark ? "dark" : ""} rounded-lg border border-border bg-background p-4 font-sans text-foreground`}
     >
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <Button size="sm">Primary</Button>

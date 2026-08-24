@@ -73,6 +73,27 @@ const preview: Preview = {
     controls: {
       matchers: { color: /(background|color)$/i, date: /Date$/i },
     },
+    options: {
+      /**
+       * Explicit ordering. Alphabetical would put the Tailwind reference table
+       * ahead of the semantic contract, which inverts what a reader needs
+       * first.
+       */
+      storySort: {
+        order: [
+          "Foundations",
+          [
+            "Palettes",
+            "Colour",
+            ["Semantic tokens", "Library ramps", "Tailwind palette"],
+            "Typography",
+            "Spacing and radius",
+            "Motion",
+          ],
+          "Elements",
+        ],
+      },
+    },
   },
 };
 
