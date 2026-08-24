@@ -1,4 +1,6 @@
 @import "./01-primitive.css";
 @import "./themes/base-light.css";
 @import "./themes/base-dark.css";
+@import "./themes/amber-light.css";
+@import "./themes/amber-dark.css";
 @import "./02-semantic.css";

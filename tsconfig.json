@@ -32,6 +32,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", ".storybook/**/*", "*.config.ts"],
+  "include": ["src/**/*", "docs/**/*", ".storybook/**/*", "*.config.ts"],
   "exclude": ["node_modules", "dist", "storybook-static"]
 }

@@ -1,0 +1,55 @@
+/*
+ * Amber palette, dark.
+ *
+ * Selector is `.palette-amber.dark`, so the `dark` class is still present on the
+ * root. That matters: shadcn elements ship `dark:` utilities which resolve
+ * through `@custom-variant dark (&:is(.dark *))`, and they would silently stop
+ * working if the dark variant were expressed as a separate class instead.
+ */
+
+.palette-amber.dark {
+  --background: var(--sand-950);
+  --foreground: var(--sand-100);
+
+  --card: var(--sand-900);
+  --card-foreground: var(--sand-100);
+
+  --popover: var(--sand-900);
+  --popover-foreground: var(--sand-100);
+
+  --primary: var(--amber-300);
+  --primary-foreground: var(--sand-950);
+
+  --secondary: var(--sand-800);
+  --secondary-foreground: var(--sand-100);
+
+  --muted: var(--sand-800);
+  --muted-foreground: var(--sand-400);
+
+  --accent: var(--amber-950);
+  --accent-foreground: var(--amber-100);
+
+  --destructive: var(--danger-400);
+
+  --border: var(--overlay-white-10);
+  --input: var(--overlay-white-15);
+  --ring: var(--amber-400);
+
+  --chart-1: var(--amber-200);
+  --chart-2: var(--amber-300);
+  --chart-3: var(--amber-400);
+  --chart-4: var(--amber-500);
+  --chart-5: var(--amber-600);
+
+  --sidebar: var(--sand-900);
+  --sidebar-foreground: var(--sand-100);
+  --sidebar-primary: var(--amber-300);
+  --sidebar-primary-foreground: var(--sand-950);
+  --sidebar-accent: var(--amber-950);
+  --sidebar-accent-foreground: var(--amber-100);
+  --sidebar-border: var(--overlay-white-10);
+  --sidebar-ring: var(--amber-400);
+
+  --positive: var(--positive-400);
+  --negative: var(--danger-400);
+}

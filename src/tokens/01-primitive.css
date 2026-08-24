@@ -23,6 +23,32 @@
   --neutral-900: oklch(0.205 0 0);
   --neutral-950: oklch(0.145 0 0);
 
+  /* Amber ramp. Warm accent, used by the amber palette. */
+  --amber-50: oklch(0.97 0.025 85);
+  --amber-100: oklch(0.93 0.04 85);
+  --amber-200: oklch(0.85 0.07 82);
+  --amber-300: oklch(0.75 0.1 80);
+  --amber-400: oklch(0.68 0.115 78);
+  --amber-500: oklch(0.62 0.115 78);
+  --amber-600: oklch(0.54 0.105 76);
+  --amber-700: oklch(0.46 0.09 74);
+  --amber-800: oklch(0.38 0.075 72);
+  --amber-900: oklch(0.3 0.06 72);
+  --amber-950: oklch(0.22 0.045 72);
+
+  /* Sand ramp. Warm low-chroma neutral, the surface family for amber. */
+  --sand-50: oklch(0.985 0.005 80);
+  --sand-100: oklch(0.965 0.008 78);
+  --sand-200: oklch(0.93 0.012 76);
+  --sand-300: oklch(0.86 0.018 74);
+  --sand-400: oklch(0.74 0.02 72);
+  --sand-500: oklch(0.6 0.022 70);
+  --sand-600: oklch(0.46 0.02 68);
+  --sand-700: oklch(0.34 0.018 66);
+  --sand-800: oklch(0.24 0.015 64);
+  --sand-900: oklch(0.16 0.012 62);
+  --sand-950: oklch(0.11 0.01 62);
+
   /*
    * Alpha overlays. Dark-mode borders are white at low alpha rather than a ramp
    * step, so they cannot be expressed as a neutral reference.

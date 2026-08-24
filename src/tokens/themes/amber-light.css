@@ -1,0 +1,57 @@
+/*
+ * Amber palette, light.
+ *
+ * A second full theme, shipped to prove the semantic tier is a real contract
+ * rather than a description of one theme. It redefines the same names as the
+ * base palette and nothing else. No component knows this file exists.
+ *
+ * Consumers apply it with `class="palette-amber"` on the root element, and add
+ * `dark` alongside it for the dark variant.
+ */
+
+.palette-amber {
+  --background: var(--sand-50);
+  --foreground: var(--neutral-950);
+
+  --card: var(--neutral-0);
+  --card-foreground: var(--neutral-950);
+
+  --popover: var(--neutral-0);
+  --popover-foreground: var(--neutral-950);
+
+  --primary: var(--amber-600);
+  --primary-foreground: var(--sand-50);
+
+  --secondary: var(--sand-100);
+  --secondary-foreground: var(--amber-900);
+
+  --muted: var(--sand-100);
+  --muted-foreground: var(--sand-600);
+
+  --accent: var(--amber-100);
+  --accent-foreground: var(--amber-900);
+
+  --destructive: var(--danger-500);
+
+  --border: var(--sand-200);
+  --input: var(--sand-200);
+  --ring: var(--amber-500);
+
+  --chart-1: var(--amber-300);
+  --chart-2: var(--amber-500);
+  --chart-3: var(--amber-600);
+  --chart-4: var(--amber-700);
+  --chart-5: var(--amber-800);
+
+  --sidebar: var(--sand-100);
+  --sidebar-foreground: var(--neutral-950);
+  --sidebar-primary: var(--amber-600);
+  --sidebar-primary-foreground: var(--sand-50);
+  --sidebar-accent: var(--amber-100);
+  --sidebar-accent-foreground: var(--amber-900);
+  --sidebar-border: var(--sand-200);
+  --sidebar-ring: var(--amber-500);
+
+  --positive: var(--positive-500);
+  --negative: var(--danger-500);
+}
