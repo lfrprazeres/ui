@@ -1,6 +1,7 @@
-@import "./01-primitive.css";
-@import "./themes/base-light.css";
-@import "./themes/base-dark.css";
-@import "./themes/amber-light.css";
-@import "./themes/amber-dark.css";
-@import "./02-semantic.css";
+@import "./01-ramps.css";
+@import "./02-scales.css";
+@import "./palettes/base.css";
+@import "./palettes/amber.css";
+@import "./palettes/cyberpunk.css";
+@import "./palettes/minimal.css";
+@import "./03-bridge.css";

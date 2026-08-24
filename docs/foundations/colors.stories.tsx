@@ -32,11 +32,24 @@ const ROLES = [
   "--primary-foreground",
   "--secondary",
   "--secondary-foreground",
+  "--tertiary",
+  "--tertiary-foreground",
   "--muted",
   "--muted-foreground",
   "--accent",
   "--accent-foreground",
   "--destructive",
+];
+
+const NEUTRAL_RAMPS = ["neutral", "slate", "sand"];
+const CHROMATIC_RAMPS = [
+  "amber",
+  "rose",
+  "emerald",
+  "cyan",
+  "blue",
+  "violet",
+  "fuchsia",
 ];
 
 const OUTLINES = ["--border", "--input", "--ring"];
@@ -74,12 +87,25 @@ function ColourFoundations() {
       </p>
 
       <Section
-        description="Raw scales. No component references these directly."
-        title="Primitive ramps"
+        description="Raw scales. No component references these directly, and no palette is obliged to use all of them. Only neutral carries a 0 step."
+        title="Primitive ramps: neutral"
       >
-        <Ramp name="neutral" steps={NEUTRAL_STEPS} />
-        <Ramp name="sand" steps={WARM_STEPS} />
-        <Ramp name="amber" steps={WARM_STEPS} />
+        {NEUTRAL_RAMPS.map((name) => (
+          <Ramp
+            key={name}
+            name={name}
+            steps={name === "neutral" ? NEUTRAL_STEPS : WARM_STEPS}
+          />
+        ))}
+      </Section>
+
+      <Section
+        description="Available for palettes to build on. Values follow Tailwind v4 OKLCH for perceptual evenness."
+        title="Primitive ramps: chromatic"
+      >
+        {CHROMATIC_RAMPS.map((name) => (
+          <Ramp key={name} name={name} steps={WARM_STEPS} />
+        ))}
       </Section>
 
       <Section

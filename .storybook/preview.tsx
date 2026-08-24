@@ -1,49 +1,73 @@
 import type { Preview } from "@storybook/react-vite";
 import "../src/styles.css";
 
-const PALETTE_CLASS = "palette-amber";
 const DARK_CLASS = "dark";
 
-const THEMES = {
-  "amber-dark": { dark: true, palette: true },
-  "amber-light": { dark: false, palette: true },
-  "base-dark": { dark: true, palette: false },
-  "base-light": { dark: false, palette: false },
-} satisfies Record<string, { dark: boolean; palette: boolean }>;
+/**
+ * Palette classes are mutually exclusive. The base palette is the absence of a
+ * class, since it lives at :root.
+ */
+const PALETTE_CLASSES = [
+  "palette-amber",
+  "palette-cyberpunk",
+  "palette-minimal",
+] as const;
 
-type ThemeName = keyof typeof THEMES;
+const PALETTES = ["base", "amber", "cyberpunk", "minimal"] as const;
+const SCHEMES = ["light", "dark"] as const;
 
-function applyTheme(name: ThemeName) {
+type Palette = (typeof PALETTES)[number];
+type Scheme = (typeof SCHEMES)[number];
+
+function applyTheme(palette: Palette, scheme: Scheme) {
   const root = document.documentElement;
-  const theme = THEMES[name] ?? THEMES["base-light"];
 
-  root.classList.toggle(DARK_CLASS, theme.dark);
-  root.classList.toggle(PALETTE_CLASS, theme.palette);
+  root.classList.remove(...PALETTE_CLASSES);
+
+  if (palette !== "base") {
+    root.classList.add(`palette-${palette}`);
+  }
+
+  root.classList.toggle(DARK_CLASS, scheme === "dark");
 }
 
 const preview: Preview = {
   decorators: [
     (Story, context) => {
-      applyTheme(context.globals.theme as ThemeName);
+      applyTheme(
+        (context.globals.palette as Palette) ?? "base",
+        (context.globals.scheme as Scheme) ?? "light"
+      );
       return <Story />;
     },
   ],
   globalTypes: {
-    theme: {
-      description: "Palette and colour scheme",
+    palette: {
+      description: "Colour palette preset",
       toolbar: {
         dynamicTitle: true,
         icon: "paintbrush",
         items: [
-          { title: "Base light", value: "base-light" },
-          { title: "Base dark", value: "base-dark" },
-          { title: "Amber light", value: "amber-light" },
-          { title: "Amber dark", value: "amber-dark" },
+          { title: "Base", value: "base" },
+          { title: "Amber", value: "amber" },
+          { title: "Cyberpunk", value: "cyberpunk" },
+          { title: "Minimal", value: "minimal" },
+        ],
+      },
+    },
+    scheme: {
+      description: "Colour scheme",
+      toolbar: {
+        dynamicTitle: true,
+        icon: "contrast",
+        items: [
+          { title: "Light", value: "light" },
+          { title: "Dark", value: "dark" },
         ],
       },
     },
   },
-  initialGlobals: { theme: "base-light" },
+  initialGlobals: { palette: "base", scheme: "light" },
   parameters: {
     a11y: { test: "error" },
     controls: {

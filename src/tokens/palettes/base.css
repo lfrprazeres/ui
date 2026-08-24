@@ -1,0 +1,101 @@
+/*
+ * Base palette. The default, applied at :root with no class required.
+ *
+ * Semantic names are shadcn contract verbatim. Every value is a reference into
+ * a ramp, never a pasted literal, so retuning a ramp moves the roles with it.
+ */
+
+:root {
+  --background: var(--neutral-0);
+  --foreground: var(--neutral-950);
+  --card: var(--neutral-0);
+  --card-foreground: var(--neutral-950);
+  --popover: var(--neutral-0);
+  --popover-foreground: var(--neutral-950);
+  --primary: var(--neutral-900);
+  --primary-foreground: var(--neutral-50);
+  --secondary: var(--neutral-100);
+  --secondary-foreground: var(--neutral-900);
+  --tertiary: var(--neutral-200);
+  --tertiary-foreground: var(--neutral-900);
+  --muted: var(--neutral-100);
+  --muted-foreground: var(--neutral-500);
+  --accent: var(--neutral-100);
+  --accent-foreground: var(--neutral-900);
+  --destructive: var(--rose-600);
+  --border: var(--neutral-200);
+  --input: var(--neutral-200);
+  --ring: var(--neutral-400);
+  --chart-1: var(--neutral-300);
+  --chart-2: var(--neutral-500);
+  --chart-3: var(--neutral-600);
+  --chart-4: var(--neutral-700);
+  --chart-5: var(--neutral-800);
+  --sidebar: var(--neutral-50);
+  --sidebar-foreground: var(--neutral-950);
+  --sidebar-primary: var(--neutral-900);
+  --sidebar-primary-foreground: var(--neutral-50);
+  --sidebar-accent: var(--neutral-100);
+  --sidebar-accent-foreground: var(--neutral-900);
+  --sidebar-border: var(--neutral-200);
+  --sidebar-ring: var(--neutral-400);
+  --positive: var(--emerald-600);
+  --negative: var(--rose-600);
+
+  --motion-duration-fast: var(--duration-fast);
+  --motion-duration-base: var(--duration-base);
+  --motion-duration-slow: var(--duration-slow);
+  --motion-ease: var(--ease-standard);
+  --motion-ease-emphasized: var(--ease-emphasized);
+}
+
+.dark {
+  --background: var(--neutral-950);
+  --foreground: var(--neutral-50);
+  --card: var(--neutral-900);
+  --card-foreground: var(--neutral-50);
+  --popover: var(--neutral-900);
+  --popover-foreground: var(--neutral-50);
+  --primary: var(--neutral-200);
+  --primary-foreground: var(--neutral-900);
+  --secondary: var(--neutral-800);
+  --secondary-foreground: var(--neutral-50);
+  --tertiary: var(--neutral-700);
+  --tertiary-foreground: var(--neutral-50);
+  --muted: var(--neutral-800);
+  --muted-foreground: var(--neutral-400);
+  --accent: var(--neutral-800);
+  --accent-foreground: var(--neutral-50);
+  --destructive: var(--rose-400);
+  --border: var(--overlay-white-10);
+  --input: var(--overlay-white-15);
+  --ring: var(--neutral-500);
+  --chart-1: var(--neutral-300);
+  --chart-2: var(--neutral-500);
+  --chart-3: var(--neutral-600);
+  --chart-4: var(--neutral-700);
+  --chart-5: var(--neutral-800);
+  --sidebar: var(--neutral-900);
+  --sidebar-foreground: var(--neutral-50);
+  --sidebar-primary: var(--neutral-200);
+  --sidebar-primary-foreground: var(--neutral-900);
+  --sidebar-accent: var(--neutral-800);
+  --sidebar-accent-foreground: var(--neutral-50);
+  --sidebar-border: var(--overlay-white-10);
+  --sidebar-ring: var(--neutral-500);
+  --positive: var(--emerald-400);
+  --negative: var(--rose-400);
+}
+
+/*
+ * Reduced motion is a token-layer concern, not a per-component one. Durations
+ * collapse to zero so the user lands on the final state instantly. The
+ * animation is not disabled, because disabling it hides the outcome.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-fast: var(--duration-instant);
+    --motion-duration-base: var(--duration-instant);
+    --motion-duration-slow: var(--duration-instant);
+  }
+}

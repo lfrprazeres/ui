@@ -1,0 +1,91 @@
+/*
+ * Cyberpunk palette. Neon cyan primary, fuchsia secondary, violet tertiary,
+ * on near-black slate surfaces.
+ *
+ * Apply with class="palette-cyberpunk", plus dark for the dark variant.
+ *
+ * Demonstrates the full preset contract: this one overrides colour AND the
+ * non-colour scales, taking radius nearly to zero and swapping the sans stack
+ * for the mono family.
+ */
+
+.palette-cyberpunk {
+  --radius: 0.125rem;
+  --font-sans-stack:
+    var(--font-mono-app, "JetBrains Mono"), ui-monospace, SFMono-Regular,
+    "Cascadia Code", monospace;
+
+  --background: var(--slate-50);
+  --foreground: var(--slate-950);
+  --card: var(--neutral-0);
+  --card-foreground: var(--slate-950);
+  --popover: var(--neutral-0);
+  --popover-foreground: var(--slate-950);
+  --primary: var(--cyan-700);
+  --primary-foreground: var(--slate-50);
+  --secondary: var(--fuchsia-600);
+  --secondary-foreground: var(--slate-50);
+  --tertiary: var(--violet-600);
+  --tertiary-foreground: var(--slate-50);
+  --muted: var(--slate-100);
+  --muted-foreground: var(--slate-500);
+  --accent: var(--cyan-100);
+  --accent-foreground: var(--cyan-900);
+  --destructive: var(--rose-600);
+  --border: var(--slate-200);
+  --input: var(--slate-200);
+  --ring: var(--cyan-500);
+  --chart-1: var(--cyan-500);
+  --chart-2: var(--fuchsia-500);
+  --chart-3: var(--violet-500);
+  --chart-4: var(--emerald-500);
+  --chart-5: var(--amber-500);
+  --sidebar: var(--slate-100);
+  --sidebar-foreground: var(--slate-950);
+  --sidebar-primary: var(--cyan-700);
+  --sidebar-primary-foreground: var(--slate-50);
+  --sidebar-accent: var(--cyan-100);
+  --sidebar-accent-foreground: var(--cyan-900);
+  --sidebar-border: var(--slate-200);
+  --sidebar-ring: var(--cyan-500);
+  --positive: var(--emerald-600);
+  --negative: var(--rose-600);
+}
+
+.palette-cyberpunk.dark {
+  --background: var(--slate-950);
+  --foreground: var(--cyan-100);
+  --card: var(--slate-900);
+  --card-foreground: var(--cyan-100);
+  --popover: var(--slate-900);
+  --popover-foreground: var(--cyan-100);
+  --primary: var(--cyan-400);
+  --primary-foreground: var(--slate-950);
+  --secondary: var(--fuchsia-400);
+  --secondary-foreground: var(--slate-950);
+  --tertiary: var(--violet-400);
+  --tertiary-foreground: var(--slate-950);
+  --muted: var(--slate-800);
+  --muted-foreground: var(--slate-400);
+  --accent: var(--cyan-950);
+  --accent-foreground: var(--cyan-300);
+  --destructive: var(--rose-400);
+  --border: var(--overlay-white-10);
+  --input: var(--overlay-white-15);
+  --ring: var(--cyan-400);
+  --chart-1: var(--cyan-400);
+  --chart-2: var(--fuchsia-400);
+  --chart-3: var(--violet-400);
+  --chart-4: var(--emerald-400);
+  --chart-5: var(--amber-300);
+  --sidebar: var(--slate-900);
+  --sidebar-foreground: var(--cyan-100);
+  --sidebar-primary: var(--cyan-400);
+  --sidebar-primary-foreground: var(--slate-950);
+  --sidebar-accent: var(--cyan-950);
+  --sidebar-accent-foreground: var(--cyan-300);
+  --sidebar-border: var(--overlay-white-10);
+  --sidebar-ring: var(--cyan-400);
+  --positive: var(--emerald-400);
+  --negative: var(--rose-400);
+}
