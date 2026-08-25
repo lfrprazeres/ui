@@ -48,7 +48,7 @@ function SemanticTokens() {
   return (
     <div className="p-6">
       <h1 className="mb-2 font-semibold text-2xl text-foreground">
-        Semantic tokens
+        Colour tokens
       </h1>
       <p className="mb-8 max-w-3xl text-muted-foreground text-sm">
         The public contract. Every component reads these names and nothing else,
@@ -107,10 +107,10 @@ function SemanticTokens() {
 const meta = {
   component: SemanticTokens,
   parameters: { layout: "fullscreen" },
-  title: "Foundations/Colour/Semantic tokens",
+  title: "Foundations/Colour tokens",
 } satisfies Meta<typeof SemanticTokens>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SemanticTokensPage: Story = { name: "Semantic tokens" };
+export const SemanticTokensPage: Story = { name: "Colour tokens" };

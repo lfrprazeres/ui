@@ -41,7 +41,7 @@ function TailwindPalette() {
   return (
     <div className="p-6">
       <h1 className="mb-2 font-semibold text-2xl text-foreground">
-        Tailwind palette
+        Tailwind colours
       </h1>
       <p className="mb-4 max-w-3xl text-muted-foreground text-sm">
         Tailwind's full default palette, available to any consumer as ordinary
@@ -54,8 +54,8 @@ function TailwindPalette() {
           These are <strong>not</strong> custom properties in the build.
           Tailwind only emits a theme variable when something references it, so{" "}
           <code className="font-mono text-xs">var(--color-sky-500)</code> from a
-          palette resolves to nothing. Use the library ramps for palettes, and
-          these for one-off utility classes in an app.
+          palette resolves to nothing. Use the Colour ramps page for palettes,
+          and these for one-off utility classes in an app.
         </p>
       </div>
 
@@ -80,10 +80,10 @@ function TailwindPalette() {
 const meta = {
   component: TailwindPalette,
   parameters: { layout: "fullscreen" },
-  title: "Foundations/Colour/Tailwind palette",
+  title: "Foundations/Tailwind colours",
 } satisfies Meta<typeof TailwindPalette>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const TailwindPalettePage: Story = { name: "Tailwind palette" };
+export const TailwindPalettePage: Story = { name: "Tailwind colours" };
