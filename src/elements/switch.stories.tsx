@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Label } from "@/elements/label";
 import { Switch } from "@/elements/switch";
 
 const meta = {
@@ -11,6 +12,24 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-export const Checked: Story = { args: { defaultChecked: true } };
-export const Disabled: Story = { args: { disabled: true } };
+export const Default: Story = {
+  args: { "aria-label": "Enable notifications" },
+};
+
+export const Checked: Story = {
+  args: { "aria-label": "Enable notifications", defaultChecked: true },
+};
+
+export const Disabled: Story = {
+  args: { "aria-label": "Enable notifications", disabled: true },
+};
+
+export const WithLabel: Story = {
+  args: {},
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Switch id="notifications" />
+      <Label htmlFor="notifications">Enable notifications</Label>
+    </div>
+  ),
+};

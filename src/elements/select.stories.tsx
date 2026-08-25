@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <Select>
-      <SelectTrigger className="w-56">
+      <SelectTrigger aria-label="Locale" className="w-56">
         <SelectValue placeholder="Pick a locale" />
       </SelectTrigger>
       <SelectContent>

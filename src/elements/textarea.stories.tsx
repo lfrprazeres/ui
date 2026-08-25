@@ -11,7 +11,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = { args: { placeholder: "Write something" } };
+export const Default: Story = {
+  args: { "aria-label": "Notes", placeholder: "Write something" },
+};
 export const Disabled: Story = {
-  args: { disabled: true, placeholder: "Disabled" },
+  args: { "aria-label": "Notes", disabled: true, placeholder: "Disabled" },
 };

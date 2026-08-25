@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Button, from the root barrel",
+    "path": "dist/index.js",
+    "import": "{ Button }",
+    "ignore": ["react", "react-dom"],
+    "limit": "11 kB"
+  },
+  {
+    "name": "Button, from the elements subpath",
+    "path": "dist/elements/index.js",
+    "import": "{ Button }",
+    "ignore": ["react", "react-dom"],
+    "limit": "11 kB"
+  },
+  {
+    "name": "Dialog, a Radix-backed overlay",
+    "path": "dist/elements/index.js",
+    "import": "{ Dialog, DialogContent, DialogTitle, DialogTrigger }",
+    "ignore": ["react", "react-dom"],
+    "limit": "25 kB"
+  },
+  {
+    "name": "Marquee, pulls in motion",
+    "path": "dist/components/index.js",
+    "import": "{ Marquee }",
+    "ignore": ["react", "react-dom"],
+    "limit": "50 kB"
+  },
+  {
+    "name": "Everything, the whole surface",
+    "path": "dist/index.js",
+    "import": "*",
+    "ignore": ["react", "react-dom"],
+    "limit": "110 kB"
+  }
+]
