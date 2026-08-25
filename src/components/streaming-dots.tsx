@@ -1,6 +1,10 @@
 import { cn } from "@/lib/cn";
 
-const DELAYS = ["", "[animation-delay:120ms]", "[animation-delay:240ms]"];
+const DOTS = [
+  "[animation-delay:-320ms]",
+  "[animation-delay:-160ms]",
+  "[animation-delay:0ms]",
+];
 
 export interface StreamingDotsProps {
   className?: string;
@@ -9,11 +13,13 @@ export interface StreamingDotsProps {
 }
 
 /**
- * Three bouncing dots for a pending response.
+ * Three dots for a pending response.
  *
- * `motion-reduce:animate-none` rather than the duration tokens, for the same
- * reason as Marquee: this is a loop with no final state to collapse toward. The
- * role and label still convey the state once the animation stops.
+ * Under reduced motion the bounce is swapped for an opacity pulse rather than
+ * removed. This is a loop, so there is no final state to collapse toward, but
+ * killing it outright would drop the only "something is happening" cue a
+ * sighted user has. Reduced motion targets vestibular triggers, which means
+ * movement, so fading in place stays within it.
  */
 export function StreamingDots({
   label = "Loading",
@@ -25,13 +31,14 @@ export function StreamingDots({
       className={cn("inline-flex items-center gap-1", className)}
       role="status"
     >
-      {DELAYS.map((delay) => (
+      {DOTS.map((delay) => (
         <span
           className={cn(
-            "size-1.5 animate-bounce rounded-full bg-current motion-reduce:animate-none",
+            "size-1.5 animate-bounce rounded-full bg-current opacity-60",
+            "motion-reduce:animate-pulse motion-reduce:[animation-delay:0ms]",
             delay
           )}
-          key={delay || "first"}
+          key={delay}
         />
       ))}
     </span>

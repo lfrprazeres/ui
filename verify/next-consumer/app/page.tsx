@@ -71,8 +71,11 @@ export default function Page() {
         <Chip>a client component</Chip>
       </Marquee>
 
-      {/* Server components, so these never reach the client bundle. */}
-      <MessageBubble from="user">Rendered on the server</MessageBubble>
+      {/* StreamingDots is a server component. MessageBubble is a client one,
+          rendered here from a server component to prove the boundary. */}
+      <MessageBubble from="user">
+        Rendered from a server component
+      </MessageBubble>
       <MessageBubble from="assistant">
         <StreamingDots />
       </MessageBubble>
