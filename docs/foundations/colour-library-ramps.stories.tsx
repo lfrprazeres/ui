@@ -88,4 +88,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const LibraryRampsPage: Story = {};
+export const LibraryRampsPage: Story = { name: "Library ramps" };

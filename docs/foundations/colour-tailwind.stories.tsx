@@ -86,4 +86,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const TailwindPalettePage: Story = {};
+export const TailwindPalettePage: Story = { name: "Tailwind palette" };

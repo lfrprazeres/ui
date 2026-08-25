@@ -113,4 +113,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SemanticTokensPage: Story = {};
+export const SemanticTokensPage: Story = { name: "Semantic tokens" };
