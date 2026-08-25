@@ -4,7 +4,13 @@
 // of this file.
 
 import { Button } from "@lfrprazeres/ui";
-import { Chip, Marquee, StatTile } from "@lfrprazeres/ui/components";
+import {
+  Chip,
+  Marquee,
+  MessageBubble,
+  StatTile,
+  StreamingDots,
+} from "@lfrprazeres/ui/components";
 import {
   Card,
   CardContent,
@@ -64,6 +70,12 @@ export default function Page() {
         <Chip>also</Chip>
         <Chip>a client component</Chip>
       </Marquee>
+
+      {/* Server components, so these never reach the client bundle. */}
+      <MessageBubble from="user">Rendered on the server</MessageBubble>
+      <MessageBubble from="assistant">
+        <StreamingDots />
+      </MessageBubble>
     </main>
   );
 }
