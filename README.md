@@ -52,6 +52,14 @@ import { StatTile } from "@lfrprazeres/ui/components";
 
 Both resolve to the same bytes. Verified: `Button` measures 9.59 kB either way.
 
+## What ships
+
+**Elements** (16): Avatar, Badge, Button, Card, Checkbox, Dialog, DropdownMenu,
+Input, Label, Popover, Select, Separator, Skeleton, Switch, Textarea, Toaster.
+
+**Components** (7): Chip, LanguageSwitcher, Marquee, MessageBubble, StatTile,
+StreamingDots, ThemeToggle.
+
 ## Tiers
 
 | Tier | What it is | Ships |

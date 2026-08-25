@@ -4,7 +4,7 @@
 
 First release.
 
-Sixteen elements taken from the shadcn registry, four composed components, and a
+Sixteen elements taken from the shadcn registry, seven composed components, and a
 three-tier token contract whose semantic tier matches shadcn's names verbatim so
 `npx shadcn add` keeps working against it.
 
