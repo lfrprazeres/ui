@@ -56,12 +56,7 @@ export interface ThemeToggleProps {
   value: ThemeMode;
 }
 
-/**
- * Controlled theme switcher.
- *
- * Deliberately holds no state and reads no theme provider, so it works with
- * next-themes, a media query, or any store. The consumer owns the value.
- */
+/** Controlled. Holds no state and reads no theme provider. */
 export function ThemeToggle({
   value,
   onValueChange,

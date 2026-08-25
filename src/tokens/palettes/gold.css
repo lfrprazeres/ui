@@ -1,9 +1,4 @@
-/*
- * Gold palette. Warm antique gold accent on sand surfaces.
- *
- * Apply with class="palette-gold", plus dark for the dark variant.
- * Overrides colour only. Radius, spacing and fonts stay at base values.
- */
+/* Gold palette. class="palette-gold", plus dark. Colour only. */
 
 .palette-gold {
   --background: var(--sand-50);

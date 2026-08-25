@@ -1,13 +1,5 @@
-/*
- * Cyberpunk palette. Neon cyan primary, fuchsia secondary, violet tertiary,
- * on near-black slate surfaces.
- *
- * Apply with class="palette-cyberpunk", plus dark for the dark variant.
- *
- * Demonstrates the full preset contract: this one overrides colour AND the
- * non-colour scales, taking radius nearly to zero and swapping the sans stack
- * for the mono family.
- */
+/* Cyberpunk palette. class="palette-cyberpunk", plus dark.
+   Also overrides radius and the sans stack, exercising the full preset contract. */
 
 .palette-cyberpunk {
   --radius: 0.125rem;

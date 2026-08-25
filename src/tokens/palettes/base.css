@@ -1,9 +1,4 @@
-/*
- * Base palette. The default, applied at :root with no class required.
- *
- * Semantic names are shadcn contract verbatim. Every value is a reference into
- * a ramp, never a pasted literal, so retuning a ramp moves the roles with it.
- */
+/* Base palette. shadcn contract verbatim, every value a reference into a ramp. */
 
 :root {
   --background: var(--neutral-0);

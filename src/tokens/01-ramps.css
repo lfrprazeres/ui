@@ -1,15 +1,8 @@
-/*
- * Tier 1a: colour ramps.
- *
- * Raw perceptual scales, no meaning attached. Nothing here names a role and no
- * component references these directly. Palettes (see palettes/) map them onto
- * the semantic contract.
- *
- * Chromatic ramp values follow Tailwind v4 OKLCH, which is well tested for
- * perceptual evenness. Keeping them local rather than reading Tailwinds theme
- * variables is deliberate: Tailwind only emits theme vars that a utility
- * references, so a var() reference from our CSS would not keep them alive.
- */
+/* Colour ramps. Raw scales, no roles.
+
+   Values follow Tailwind v4 OKLCH but are kept local deliberately: Tailwind only
+   emits theme vars that a utility references, so var(--color-cyan-500) from a
+   palette would resolve to nothing. */
 
 :root {
   /* Neutral, achromatic. */

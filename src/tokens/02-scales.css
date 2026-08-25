@@ -1,20 +1,10 @@
-/*
- * Tier 1b: non-colour scales.
- *
- * Every one of these is palette-overridable. Because Tailwind emits utilities
- * as calc(var(--spacing) * n) and var(--radius), redefining the base value on a
- * palette class rescales the entire system at runtime with no rebuild.
- */
+/* Non-colour scales. All palette-overridable: redefining --spacing or --radius
+   on a palette class rescales the system at runtime, with no rebuild. */
 
 :root {
-  /*
-   * Tailwind base spacing unit. Utilities derive from it, so a palette that
-   * sets --spacing: 0.2rem makes every gap, padding and size proportionally
-   * tighter.
-   */
   --spacing: 0.25rem;
 
-  /* Radius base. All four derived steps compute from this one value. */
+  /* All four derived radius steps compute from this. */
   --radius: 0.625rem;
 
   /* Motion. */
@@ -26,11 +16,7 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /*
-   * Font stacks use an indirection with a quoted fallback, so a consumer can
-   * inject a framework-loaded font by setting the -app variable, and a palette
-   * can swap the family outright by redefining the stack.
-   */
+  /* Indirection lets a consumer inject a framework-loaded font via the -app var. */
   --font-sans-stack:
     var(--font-sans-app, "Inter"), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;

@@ -1,15 +1,6 @@
-/*
- * Minimal palette. Maximum contrast, zero chroma, square corners, tighter
- * spacing rhythm.
- *
- * Apply with class="palette-minimal", plus dark for the dark variant.
- *
- * The far end of the preset contract from cyberpunk: it proves a palette can
- * retune the spacing rhythm itself, not just colour. Dropping --spacing from
- * 0.25rem to 0.2rem tightens every gap, padding and size in the system
- * proportionally, with no component change and no rebuild, because Tailwind
- * emits those utilities as calc(var(--spacing) * n).
- */
+/* Minimal palette. class="palette-minimal", plus dark.
+   Also overrides --spacing, which rescales every gap, padding and size, because
+   Tailwind emits those utilities as calc(var(--spacing) * n). */
 
 .palette-minimal {
   --radius: 0rem;

@@ -5,10 +5,6 @@ import { cn } from "@/lib/cn";
 
 export type StatDirection = "up" | "down" | "flat";
 
-/**
- * Direction is a lookup rather than a conditional so the compiler catches a
- * missing key if the union ever grows.
- */
 const DIRECTION = {
   down: { className: "text-negative", icon: ArrowDownIcon },
   flat: { className: "text-muted-foreground", icon: ArrowRightIcon },
@@ -27,12 +23,6 @@ export interface StatTileProps {
   value: ReactNode;
 }
 
-/**
- * A single labelled figure with an optional change indicator.
- *
- * Takes presentational props only. It has no idea what the number means, which
- * is what keeps it in the components tier rather than being a feature.
- */
 export function StatTile({
   label,
   value,

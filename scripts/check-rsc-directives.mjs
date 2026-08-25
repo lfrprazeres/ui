@@ -12,19 +12,22 @@ import process from "node:process";
  * and fails the release if any went missing.
  */
 
-const SRC = "src/elements";
-const DIST = "dist/elements";
+const TIERS = ["elements", "components"];
 const DIRECTIVE = "use client";
 
 function modulesWithDirective(dir, extension) {
   return readdirSync(dir)
     .filter((file) => file.endsWith(extension) && !file.includes(".stories."))
     .filter((file) => readFileSync(join(dir, file), "utf8").includes(DIRECTIVE))
-    .map((file) => file.replace(extension, ""));
+    .map((file) => `${dir.split("/").pop()}/${file.replace(extension, "")}`);
 }
 
-const expected = modulesWithDirective(SRC, ".tsx");
-const actual = modulesWithDirective(DIST, ".js");
+const expected = TIERS.flatMap((tier) =>
+  modulesWithDirective(`src/${tier}`, ".tsx")
+);
+const actual = TIERS.flatMap((tier) =>
+  modulesWithDirective(`dist/${tier}`, ".js")
+);
 const missing = expected.filter((name) => !actual.includes(name));
 
 if (missing.length > 0) {

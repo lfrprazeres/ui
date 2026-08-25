@@ -21,16 +21,9 @@ const FADE_MASK =
 /**
  * A continuously scrolling strip.
  *
- * Reduced motion is handled here rather than by the duration tokens, and that
- * is deliberate. The token layer collapses durations to zero, which is right
- * for a state transition because the user lands on the final state. A loop has
- * no final state, and a zero-duration infinite animation is either an infinite
- * speed or a division by zero. So instead the animation stops entirely and the
- * strip becomes an ordinary horizontally scrollable region, which keeps every
- * item reachable by scroll, keyboard and screen reader.
- *
- * The general rule: collapse durations for transitions, suppress the animation
- * for loops.
+ * Under reduced motion this suppresses the animation and becomes a scrollable
+ * region, rather than using the duration tokens. A loop has no final state to
+ * land on, so collapsing its duration to zero would be an infinite speed.
  */
 export function Marquee({
   children,

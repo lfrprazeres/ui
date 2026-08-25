@@ -31,12 +31,6 @@ export type ChipProps = ComponentProps<"span"> &
     href?: string;
   };
 
-/**
- * A compact pill for metadata, tags, sources or filters.
- *
- * Carries no domain meaning by design. A citation chip, a ticker tag and a
- * filter pill are all this component with different children.
- */
 export function Chip({
   className,
   variant,
