@@ -1,9 +1,20 @@
 # @lfrprazeres/ui
 
-A React design system. shadcn elements, composed components, and a three-tier
+A React design system: shadcn elements, composed components, and a three-tier
 token contract with swappable palettes.
 
 Built for React 19 and Tailwind CSS v4. ESM only.
+
+> **Built for my own projects.** This exists so the things I build share one
+> component layer instead of each rebuilding buttons and a token system. It is
+> not a community project and has no roadmap beyond what I need next.
+>
+> That said, it is MIT licensed and genuinely usable. Install it, fork it, copy
+> the bits you like. Just know that the API moves when my projects need it to,
+> which is why it stays on `0.x`. Pin an exact version if that matters to you.
+
+**[Component docs and live playground](https://lfrprazeres.github.io/ui)** ·
+[Changelog](./CHANGELOG.md)
 
 ## Install
 
@@ -25,10 +36,10 @@ Import the stylesheet once, at your CSS entry point:
 That is the whole setup. You do **not** need a `@source` line pointing into
 `node_modules`: the shipped stylesheet scans its own `dist` for class names.
 
-If you are on Next.js, add the package to `optimizePackageImports`. Importing
-from the root barrel is ergonomic but pulls the whole module graph into the dev
-server's module map, which slows cold start. This fixes it, and does not affect
-production bundle size either way:
+On Next.js, add the package to `optimizePackageImports`. Importing from the root
+barrel is ergonomic but pulls the whole module graph into the dev server's
+module map, which slows cold start. This fixes it, and does not change the
+production bundle either way:
 
 ```ts
 // next.config.ts
@@ -50,7 +61,7 @@ import { Button } from "@lfrprazeres/ui/elements";
 import { StatTile } from "@lfrprazeres/ui/components";
 ```
 
-Both resolve to the same bytes. Verified: `Button` measures 9.59 kB either way.
+Both resolve to the same bytes. `Button` measures 9.59 kB either way.
 
 ## What ships
 
@@ -68,9 +79,8 @@ StreamingDots, ThemeToggle.
 | **components** | Composed from two or more elements. Owns interaction, still domain-agnostic. | yes |
 | **features** | Owns a typed data prop or a layout region, and knows your domain. | **no, build these in your app** |
 
-The library never ships features. If two of your projects need the same one,
-extract the reusable mechanism as a component and keep a thin feature on top of
-it in each.
+The library never ships features. If two projects need the same one, extract the
+reusable mechanism as a component and keep a thin feature on top of it in each.
 
 ## Palettes
 
@@ -85,7 +95,7 @@ Four ship: `base` (no class, lives at `:root`), `palette-gold`,
 `palette-cyberpunk`, `palette-minimal`. Add `dark` alongside for the dark
 variant of any of them.
 
-A palette may override every semantic colour role, plus `--radius`, `--spacing`
+A palette may redefine every semantic colour role, plus `--radius`, `--spacing`
 and the three font stacks. Because Tailwind emits utilities as
 `calc(var(--spacing) * n)` and `var(--radius)`, redefining those rescales the
 whole system at runtime with no rebuild.
@@ -101,10 +111,15 @@ zero, so anything reading them inherits the behaviour without opting in. The
 animation is not disabled, because disabling it hides the outcome: the user
 lands on the final state instantly instead.
 
-One exception, and it is deliberate. A loop has no final state, so a zero
-duration would be an infinite speed. `Marquee` therefore suppresses its
-animation entirely and becomes an ordinary scrollable region. The rule:
-**collapse durations for transitions, suppress the animation for loops.**
+Two deliberate exceptions, both loops rather than transitions. A loop has no
+final state, so collapsing its duration to zero would be an infinite speed:
+
+- `Marquee` suppresses its animation and becomes a scrollable region.
+- `StreamingDots` swaps the bounce for an opacity pulse, because removing it
+  outright would delete the only "something is happening" cue a sighted user
+  has.
+
+The rule: **collapse durations for transitions, suppress movement for loops.**
 
 ## One deviation from upstream shadcn
 
@@ -127,14 +142,19 @@ the import comes back and needs re-inverting.
 ## Notes on the build
 
 Built unbundled, preserving module structure. That is load-bearing rather than a
-preference: bundling hoists or strips the `"use client"` directives ten of the
-elements depend on, and React Server Components then break with no error at all.
+preference: bundling hoists or strips the `"use client"` directives thirteen
+modules depend on, and React Server Components then break with no error at all.
 `pnpm check:rsc` compares source against the build and fails if any went
 missing.
 
 `verify/` holds a minimal Next App Router consumer that installs the packed
 tarball and proves the contract from outside. See `verify/README.md`.
 
+## Contributing
+
+Mostly for my own future reference, see [CONTRIBUTING.md](./CONTRIBUTING.md).
+Every change that ships needs a changeset, and CI enforces it.
+
 ## Licence
 
-MIT
+MIT. See [LICENSE](./LICENSE).
