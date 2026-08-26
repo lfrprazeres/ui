@@ -1,11 +1,52 @@
-!.env.example
-*.log
-.DS_Store
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+storybook-static/
+*.tsbuildinfo
+
+# Package tarballs. `pnpm pack` drops these in the repo root, and they contain
+# the full built package.
+*.tgz
+*.tar.gz
+
+# Test and tooling output
+coverage/
+playwright-report/
+test-results/
+.cache/
+.turbo/
+.next/
+
+# Credentials. .npmrc is the dangerous one: `npm login` writes an auth token
+# into it, and a project-level file would be committed without this.
+.npmrc
+.yarnrc
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+.netrc
+
+# Environment. The negation must come AFTER the ignore patterns, because the
+# last matching rule wins. Listed first, it silently does nothing.
 .env
 .env.*
+!.env.example
+
+# Deploy
 .vercel
-coverage/
-dist/
-node_modules/
-storybook-static/
+
+# Editors and OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+*.log
+
+# Next mutates this file on every build in the verification fixture.
 verify/next-consumer/tsconfig.json
