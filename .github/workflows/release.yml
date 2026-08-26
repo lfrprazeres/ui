@@ -3,6 +3,9 @@ name: Release
 on:
   push:
     branches: [main]
+  # So a release can be retried without an empty commit, for instance after
+  # adding a missing token.
+  workflow_dispatch:
 
 concurrency: release
 
