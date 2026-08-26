@@ -40,10 +40,14 @@ id_rsa*
 # Deploy
 .vercel
 
-# Editors and OS
+# Editors, agents and OS
 .idea/
 .vscode/*
 !.vscode/extensions.json
+# Local agent state and settings. The shared, repo-specific rules live in
+# CLAUDE.md at the root, which is committed on purpose so a fresh clone gets
+# them.
+.claude/
 .DS_Store
 Thumbs.db
 *.log
