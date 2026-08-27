@@ -18,6 +18,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/elements/chart";
+import { cn } from "@/lib/cn";
 
 export interface LineChartValueAxis {
   /** Scale to the data range instead of anchoring at zero. */
@@ -27,6 +28,13 @@ export interface LineChartValueAxis {
 }
 
 export interface LineChartProps extends ChartBaseProps {
+  /**
+   * Sizing for the plot area itself. `className` styles the whole figure, which
+   * also holds the legend and the text alternative, so a height there does not
+   * reach the plot: the container keeps its default aspect ratio and overflows.
+   * Pass the height here instead.
+   */
+  chartClassName?: string;
   data: ChartRow[];
   /** Draws points as well as the line. */
   dots?: boolean;
@@ -54,6 +62,7 @@ export interface LineChartProps extends ChartBaseProps {
  * chart.
  */
 export function LineChart({
+  chartClassName,
   className,
   data,
   dots = false,
@@ -91,7 +100,7 @@ export function LineChart({
       legend={legend ? <ChartLegendList items={legendItems} /> : null}
     >
       <ChartContainer
-        className="aspect-video w-full"
+        className={cn(chartClassName ?? "aspect-video", "w-full")}
         config={config}
         initialDimension={{ height: 240, width: 420 }}
       >

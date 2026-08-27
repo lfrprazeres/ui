@@ -13,8 +13,16 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/elements/chart";
+import { cn } from "@/lib/cn";
 
 export interface DonutChartProps extends ChartBaseProps {
+  /**
+   * Sizing for the plot area itself. `className` styles the whole figure, which
+   * also holds the legend and the text alternative, so a height there does not
+   * reach the plot: the container keeps its default aspect ratio and overflows.
+   * Pass the height here instead.
+   */
+  chartClassName?: string;
   data: ChartSlice[];
 }
 
@@ -33,6 +41,7 @@ function share(value: number, total: number): string {
  * optional here.
  */
 export function DonutChart({
+  chartClassName,
   className,
   data,
   emptyLabel,
@@ -91,7 +100,7 @@ export function DonutChart({
       }
     >
       <ChartContainer
-        className="mx-auto aspect-square max-h-56"
+        className={cn(chartClassName ?? "aspect-square max-h-56", "mx-auto")}
         config={config}
         initialDimension={{ height: 224, width: 224 }}
       >

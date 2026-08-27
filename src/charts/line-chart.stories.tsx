@@ -166,3 +166,42 @@ export const TimestampedCategories: Story = {
     </div>
   ),
 };
+
+/**
+ * A fixed-height plot in a wide container.
+ *
+ * `className` sizes the figure, which also holds the legend and the hidden
+ * table, so a height there leaves the plot on its default 16:9 ratio. In a wide
+ * card that computes far taller than the figure and the axis paints outside the
+ * card. `chartClassName` is what actually sizes the plot.
+ */
+export const FixedHeight: Story = {
+  args: {
+    chartClassName: "h-[240px]",
+    data: MONTHS,
+    label: "Revenue in a fixed-height plot",
+    legend: false,
+    series: [{ key: "revenue", label: "Revenue" }],
+    xKey: "month",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const figure = canvas.getByRole("figure", {
+      name: "Revenue in a fixed-height plot",
+    });
+    await waitFor(() =>
+      expect(canvasElement.querySelector("svg")).not.toBeNull()
+    );
+    const svg = canvasElement.querySelector("svg") as SVGElement;
+    const frame = figure.getBoundingClientRect();
+    const plot = svg.getBoundingClientRect();
+    // The plot must stay inside the figure it was given, not spill past it.
+    await expect(plot.bottom).toBeLessThanOrEqual(Math.ceil(frame.bottom));
+    await expect(Math.round(plot.height)).toBeLessThanOrEqual(240);
+  },
+  render: (args) => (
+    <div className="w-[900px]">
+      <LineChart {...args} />
+    </div>
+  ),
+};
