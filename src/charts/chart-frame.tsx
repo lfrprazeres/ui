@@ -18,6 +18,9 @@ export interface ChartFrameProps {
   isEmpty?: boolean;
   label: string;
   legend?: ReactNode;
+  /** Dims the plot and overlays `loadingLabel` without unmounting it. */
+  loading?: boolean;
+  loadingLabel?: string;
 }
 
 /**
@@ -38,6 +41,8 @@ export function ChartFrame({
   isEmpty = false,
   label,
   legend,
+  loading = false,
+  loadingLabel = "Loading chart",
 }: ChartFrameProps) {
   if (isEmpty) {
     return (
@@ -49,13 +54,25 @@ export function ChartFrame({
 
   return (
     <figure aria-label={label} className={cn("space-y-3", className)}>
-      {interactive ? (
-        children
-      ) : (
-        <div aria-label={label} role="img">
-          {children}
+      <div className="relative">
+        <div
+          aria-busy={loading}
+          className={cn("transition-opacity", loading && "opacity-40")}
+        >
+          {interactive ? (
+            children
+          ) : (
+            <div aria-label={label} role="img">
+              {children}
+            </div>
+          )}
         </div>
-      )}
+        {loading ? (
+          <output className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
+            {loadingLabel}
+          </output>
+        ) : null}
+      </div>
       {dataTable}
       {legend}
     </figure>

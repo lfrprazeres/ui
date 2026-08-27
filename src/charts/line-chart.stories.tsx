@@ -100,6 +100,62 @@ export const Empty: Story = {
 };
 
 /**
+ * Refreshing an existing series. The plot stays mounted and dims rather than
+ * being swapped for a skeleton, because remounting recharts on every refresh
+ * throws away the rendered SVG and makes a routine poll look like a reload.
+ */
+export const Loading: Story = {
+  args: {
+    data: MONTHS,
+    label: LABEL,
+    loading: true,
+    loadingLabel: "Loading revenue",
+    series: SERIES,
+    xKey: "month",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      canvas.getByRole("figure", { name: LABEL })
+    ).toBeInTheDocument();
+    await expect(canvas.getByRole("status")).toHaveTextContent(
+      "Loading revenue"
+    );
+    // The text alternative has to survive the dim, or a screen reader loses the
+    // numbers exactly while a sighted user can still see them behind it.
+    await expect(
+      canvas.getByRole("table", { name: LABEL })
+    ).toBeInTheDocument();
+  },
+};
+
+/**
+ * The first load, with nothing to keep. `loading` has to win over `isEmpty`
+ * here: showing "no data" before the first response has arrived states
+ * something the chart does not yet know.
+ */
+export const LoadingWithoutData: Story = {
+  args: {
+    data: [],
+    emptyLabel: "No revenue recorded yet",
+    label: LABEL,
+    loading: true,
+    loadingLabel: "Loading revenue",
+    series: SERIES,
+    xKey: "month",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole("status")).toHaveTextContent(
+      "Loading revenue"
+    );
+    await expect(
+      canvas.queryByText("No revenue recorded yet")
+    ).not.toBeInTheDocument();
+  },
+};
+
+/**
  * A price series: no grid, the value axis on the right and fitted to the data
  * rather than anchored at zero, and formatted ticks on both axes. This is the
  * shape a ticker chart needs.
