@@ -18,4 +18,6 @@ export * from "./chart-frame";
 export * from "./chart-legend-list";
 export * from "./chart-ramp";
 export * from "./donut-chart";
+export * from "./line-chart";
 export * from "./types";
+export * from "./use-cartesian-chart";

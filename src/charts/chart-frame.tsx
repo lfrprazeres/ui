@@ -8,6 +8,13 @@ export interface ChartFrameProps {
   /** Rendered outside the image role so assistive tech can reach it. */
   dataTable?: ReactNode;
   emptyLabel?: string;
+  /**
+   * True when the chart itself is keyboard operable. recharts gives cartesian
+   * charts a tab stop and `role="application"`, and wrapping a focusable,
+   * interactive thing in `role="img"` both hides it from assistive tech and
+   * lies about what it is.
+   */
+  interactive?: boolean;
   isEmpty?: boolean;
   label: string;
   legend?: ReactNode;
@@ -27,6 +34,7 @@ export function ChartFrame({
   className,
   dataTable,
   emptyLabel = "No data to display",
+  interactive = false,
   isEmpty = false,
   label,
   legend,
@@ -40,10 +48,14 @@ export function ChartFrame({
   }
 
   return (
-    <figure className={cn("space-y-3", className)}>
-      <div aria-label={label} role="img">
-        {children}
-      </div>
+    <figure aria-label={label} className={cn("space-y-3", className)}>
+      {interactive ? (
+        children
+      ) : (
+        <div aria-label={label} role="img">
+          {children}
+        </div>
+      )}
       {dataTable}
       {legend}
     </figure>
