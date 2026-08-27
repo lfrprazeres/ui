@@ -136,7 +136,21 @@
   --rose-900: oklch(0.41 0.159 10);
   --rose-950: oklch(0.271 0.105 12);
 
-  /* Alpha overlays, for dark borders that are not ramp steps. */
+  /* Alpha overlays, for borders and translucent surfaces that are not ramp
+     steps. A palette may not invent values, so every alpha a glass surface
+     needs is declared here first. */
+  --overlay-white-5: oklch(1 0 0 / 5%);
+  --overlay-white-8: oklch(1 0 0 / 8%);
   --overlay-white-10: oklch(1 0 0 / 10%);
+  --overlay-white-12: oklch(1 0 0 / 12%);
   --overlay-white-15: oklch(1 0 0 / 15%);
+  --overlay-white-20: oklch(1 0 0 / 20%);
+  --overlay-white-25: oklch(1 0 0 / 25%);
+  --overlay-white-60: oklch(1 0 0 / 60%);
+  --overlay-white-70: oklch(1 0 0 / 70%);
+  --overlay-white-85: oklch(1 0 0 / 85%);
+  --overlay-black-5: oklch(0 0 0 / 5%);
+  --overlay-black-8: oklch(0 0 0 / 8%);
+  --overlay-black-12: oklch(0 0 0 / 12%);
+  --overlay-black-20: oklch(0 0 0 / 20%);
 }

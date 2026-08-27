@@ -11,9 +11,10 @@ const PALETTE_CLASSES = [
   "palette-gold",
   "palette-cyberpunk",
   "palette-minimal",
+  "palette-glass",
 ] as const;
 
-const PALETTES = ["base", "gold", "cyberpunk", "minimal"] as const;
+const PALETTES = ["base", "gold", "cyberpunk", "minimal", "glass"] as const;
 const SCHEMES = ["light", "dark"] as const;
 
 type Palette = (typeof PALETTES)[number];
@@ -52,6 +53,7 @@ const preview: Preview = {
           { title: "Gold", value: "gold" },
           { title: "Cyberpunk", value: "cyberpunk" },
           { title: "Minimal", value: "minimal" },
+          { title: "Glass", value: "glass" },
         ],
       },
     },

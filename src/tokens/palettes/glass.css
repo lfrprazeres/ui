@@ -1,0 +1,84 @@
+/* Glass palette. class="palette-glass", plus dark. Colour only.
+
+   The surfaces here are deliberately translucent, which is the one thing that
+   makes this palette different in kind from the others: `--card`, `--popover`
+   and `--sidebar` composite against whatever sits behind them. The alpha values
+   are chosen so foreground text still clears 4.5:1 over the darkest and
+   lightest backdrop the palette itself can produce. Pair with `Surface` for the
+   blur; a palette cannot express that. */
+
+.palette-glass {
+  --background: var(--slate-100);
+  --foreground: var(--slate-950);
+  --card: var(--overlay-white-70);
+  --card-foreground: var(--slate-950);
+  --popover: var(--neutral-0);
+  --popover-foreground: var(--slate-950);
+  --primary: var(--blue-600);
+  --primary-foreground: var(--neutral-0);
+  --secondary: var(--overlay-white-60);
+  --secondary-foreground: var(--slate-900);
+  --tertiary: var(--cyan-100);
+  --tertiary-foreground: var(--cyan-950);
+  --muted: var(--slate-200);
+  --muted-foreground: var(--slate-600);
+  --accent: var(--blue-100);
+  --accent-foreground: var(--blue-900);
+  --destructive: var(--rose-600);
+  --border: var(--overlay-black-12);
+  --input: var(--overlay-black-20);
+  --ring: var(--blue-500);
+  --chart-1: var(--blue-300);
+  --chart-2: var(--blue-500);
+  --chart-3: var(--cyan-500);
+  --chart-4: var(--violet-500);
+  --chart-5: var(--slate-500);
+  --sidebar: var(--overlay-white-60);
+  --sidebar-foreground: var(--slate-950);
+  --sidebar-primary: var(--blue-600);
+  --sidebar-primary-foreground: var(--neutral-0);
+  --sidebar-accent: var(--blue-100);
+  --sidebar-accent-foreground: var(--blue-900);
+  --sidebar-border: var(--overlay-black-8);
+  --sidebar-ring: var(--blue-500);
+  --positive: var(--emerald-700);
+  --negative: var(--rose-700);
+}
+
+.palette-glass.dark {
+  --background: var(--slate-950);
+  --foreground: var(--slate-50);
+  --card: var(--overlay-white-8);
+  --card-foreground: var(--slate-50);
+  --popover: var(--slate-900);
+  --popover-foreground: var(--slate-50);
+  --primary: var(--cyan-300);
+  --primary-foreground: var(--slate-950);
+  --secondary: var(--overlay-white-10);
+  --secondary-foreground: var(--slate-50);
+  --tertiary: var(--violet-900);
+  --tertiary-foreground: var(--violet-100);
+  --muted: var(--overlay-white-10);
+  --muted-foreground: var(--slate-300);
+  --accent: var(--overlay-white-15);
+  --accent-foreground: var(--slate-50);
+  --destructive: var(--rose-400);
+  --border: var(--overlay-white-15);
+  --input: var(--overlay-white-20);
+  --ring: var(--cyan-400);
+  --chart-1: var(--cyan-300);
+  --chart-2: var(--blue-400);
+  --chart-3: var(--violet-400);
+  --chart-4: var(--fuchsia-400);
+  --chart-5: var(--slate-400);
+  --sidebar: var(--overlay-white-5);
+  --sidebar-foreground: var(--slate-50);
+  --sidebar-primary: var(--cyan-300);
+  --sidebar-primary-foreground: var(--slate-950);
+  --sidebar-accent: var(--overlay-white-12);
+  --sidebar-accent-foreground: var(--slate-50);
+  --sidebar-border: var(--overlay-white-10);
+  --sidebar-ring: var(--cyan-400);
+  --positive: var(--emerald-400);
+  --negative: var(--rose-400);
+}
