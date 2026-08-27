@@ -35,9 +35,17 @@ literal.** A copied colour and its ramp drift apart the first time the ramp is
 retuned.
 
 **The build stays unbundled.** Bundling hoists or strips the `"use client"`
-directives fourteen modules depend on, and React Server Components then break
+directives twenty-two modules depend on, and React Server Components then break
 with no error at all. `pnpm check:rsc` compares source against the build; it is
 not decoration.
+
+**Charts are an entry point, not a tier.** `Chart` stays in `src/elements`
+because `components.json` pins `aliases.ui` there and `shadcn add chart` must
+stay safe to re-run; the charts built on it live in `src/charts`. Neither
+appears in a tier barrel, and `src/charts/index.ts` is the only place they are
+exported. `recharts` is an optional peer, so adding either back to a tier barrel
+silently re-poisons the root barrel for every consumer that does not bundle.
+`pnpm check:charts` fails if that happens.
 
 **The library never ships features.** Elements compose nothing else. Components
 compose elements and own interaction. Anything taking a typed domain data prop
@@ -106,6 +114,7 @@ content is invisible with nothing thrown.
 | `pnpm test` | Every story in a real browser, axe violations, keyboard behaviour |
 | `pnpm build && pnpm check:rsc` | A lost `"use client"` directive |
 | `pnpm check:package` | Malformed exports map, broken types |
+| `pnpm check:charts` | recharts reachable from a non-chart entry point |
 | `pnpm check:size` | Bundle budget regressions |
 
 `verify/` holds a Next App Router consumer that installs the packed tarball and
@@ -116,7 +125,7 @@ exports map or stylesheet.
 
 Scoped in `biome.jsonc`, each with a reason. Do not widen them:
 
-- `noBarrelFile` on the three entry points, which a published package requires,
+- `noBarrelFile` on the four entry points, which a published package requires,
   and on `sonner.tsx`, which re-exports `toast` so consumers need not install
   sonner themselves.
 - `noLeakedRender` and the 200-line cap on `src/elements/**`, which is vendored
