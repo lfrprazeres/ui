@@ -71,6 +71,8 @@ export function LineChart({
   formatX,
   grid = true,
   label,
+  loading = false,
+  loadingLabel,
   minTickGap,
   legend = true,
   series,
@@ -95,9 +97,11 @@ export function LineChart({
       }
       emptyLabel={emptyLabel}
       interactive
-      isEmpty={data.length === 0 || series.length === 0}
+      isEmpty={!loading && (data.length === 0 || series.length === 0)}
       label={label}
       legend={legend ? <ChartLegendList items={legendItems} /> : null}
+      loading={loading}
+      loadingLabel={loadingLabel}
     >
       <ChartContainer
         className={cn(chartClassName ?? "aspect-video", "w-full")}

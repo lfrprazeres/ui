@@ -48,6 +48,8 @@ export function DonutChart({
   formatValue,
   label,
   legend = true,
+  loading = false,
+  loadingLabel,
 }: DonutChartProps) {
   const total = useMemo(
     () => data.reduce((sum, slice) => sum + slice.value, 0),
@@ -85,7 +87,7 @@ export function DonutChart({
         />
       }
       emptyLabel={emptyLabel}
-      isEmpty={data.length === 0}
+      isEmpty={!loading && data.length === 0}
       label={label}
       legend={
         legend ? (
@@ -99,6 +101,8 @@ export function DonutChart({
           />
         ) : null
       }
+      loading={loading}
+      loadingLabel={loadingLabel}
     >
       <ChartContainer
         className={cn(chartClassName ?? "aspect-square max-h-56", "mx-auto")}

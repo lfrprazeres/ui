@@ -32,4 +32,13 @@ export interface ChartBaseProps {
    */
   label: string;
   legend?: boolean;
+  /**
+   * Dims the plot and overlays a status message while fresh data loads, leaving
+   * the previous series mounted. Async data is a chart's normal case rather
+   * than an exception, and swapping in a skeleton would tear down and rebuild
+   * recharts on every refresh, so the chart stays put and goes quiet instead.
+   */
+  loading?: boolean;
+  /** Status text announced while `loading` is true. */
+  loadingLabel?: string;
 }
