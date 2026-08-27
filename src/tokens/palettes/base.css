@@ -14,7 +14,7 @@
   --tertiary: var(--neutral-200);
   --tertiary-foreground: var(--neutral-900);
   --muted: var(--neutral-100);
-  --muted-foreground: var(--neutral-500);
+  --muted-foreground: var(--neutral-600);
   --accent: var(--neutral-100);
   --accent-foreground: var(--neutral-900);
   --destructive: var(--rose-600);
@@ -34,8 +34,8 @@
   --sidebar-accent-foreground: var(--neutral-900);
   --sidebar-border: var(--neutral-200);
   --sidebar-ring: var(--neutral-400);
-  --positive: var(--emerald-600);
-  --negative: var(--rose-600);
+  --positive: var(--emerald-700);
+  --negative: var(--rose-700);
 
   --motion-duration-fast: var(--duration-fast);
   --motion-duration-base: var(--duration-base);

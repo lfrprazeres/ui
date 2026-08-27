@@ -12,21 +12,34 @@ import process from "node:process";
  * and fails the release if any went missing.
  */
 
-const TIERS = ["elements", "components"];
+const TIERS = ["charts", "components", "elements"];
 const DIRECTIVE = "use client";
+const MODULE_EXTENSION = /\.(tsx?|js)$/;
 
-function modulesWithDirective(dir, extension) {
+/*
+ * Source is scanned for both .ts and .tsx: a hook in a plain .ts file can carry
+ * the directive just as a component can, and scanning only .tsx made those
+ * invisible to the expected set while dist still reported them.
+ */
+function modulesWithDirective(dir, extensions) {
   return readdirSync(dir)
-    .filter((file) => file.endsWith(extension) && !file.includes(".stories."))
+    .filter(
+      (file) =>
+        extensions.some((extension) => file.endsWith(extension)) &&
+        !file.includes(".stories.")
+    )
     .filter((file) => readFileSync(join(dir, file), "utf8").includes(DIRECTIVE))
-    .map((file) => `${dir.split("/").pop()}/${file.replace(extension, "")}`);
+    .map((file) => {
+      const base = file.replace(MODULE_EXTENSION, "");
+      return `${dir.split("/").pop()}/${base}`;
+    });
 }
 
 const expected = TIERS.flatMap((tier) =>
-  modulesWithDirective(`src/${tier}`, ".tsx")
+  modulesWithDirective(`src/${tier}`, [".ts", ".tsx"])
 );
 const actual = TIERS.flatMap((tier) =>
-  modulesWithDirective(`dist/${tier}`, ".js")
+  modulesWithDirective(`dist/${tier}`, [".js"])
 );
 const missing = expected.filter((name) => !actual.includes(name));
 

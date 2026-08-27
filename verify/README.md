@@ -10,12 +10,18 @@ From the repo root:
 
 ```bash
 pnpm build
-pnpm pack --pack-destination verify/next-consumer
+pnpm check:charts
+pnpm pack --out verify/next-consumer/lfrprazeres-ui.tgz
 cd verify/next-consumer
+rm -rf node_modules pnpm-lock.yaml .next   # pnpm caches file: tarballs by name
 pnpm install --ignore-workspace
 pnpm exec tsc --noEmit
 pnpm exec next build
 ```
+
+The tarball name carries no version on purpose. It used to, which is how this
+fixture ended up pointing at a `0.0.0` file long after the package had moved on,
+leaving the documented procedure broken.
 
 ## What it proves
 
@@ -25,8 +31,9 @@ components inside the package. If the build ever stripped or hoisted those
 directives, this build fails with "You're importing a component that needs
 useState". A passing build is the proof.
 
-**All three entry points.** The page imports from the root barrel, from
-`/elements`, and from `/components`, so a broken export map fails here.
+**The entry points.** The page imports from the root barrel, from `/elements`
+and from `/components`, so a broken export map fails here. `/charts` is covered
+by the opt-in case described below rather than by the committed page.
 
 **Types resolve from outside.** `tsc --noEmit` runs against the installed
 tarball, not the source, so a missing or misplaced `.d.ts` surfaces.
@@ -35,6 +42,24 @@ tarball, not the source, so a missing or misplaced `.d.ts` surfaces.
 The shipped `styles.css` scans its own `dist` for class names, so consumers do
 not have to add a `@source` line pointing into `node_modules`. Confirm by
 grepping the built CSS for `.bg-primary` and `--gold-600`.
+
+**recharts is absent.** This is the headline check. `app/page.tsx` imports no
+chart, and `recharts` is an optional peer, so neither should exist anywhere:
+
+```bash
+test -d node_modules/recharts && echo "FAIL: installed" || echo "PASS: not installed"
+grep -rl "recharts" .next && echo "FAIL: leaked into the build" || echo "PASS: absent"
+```
+
+The first line tests the `peerDependenciesMeta.optional` flag against pnpm's
+`autoInstallPeers`, which would otherwise install it anyway and make the whole
+split a no-op. The second tests that no tier barrel re-exports a chart.
+
+To prove the opposite case, add a route that imports from
+`@lfrprazeres/ui/charts`, `pnpm add recharts --ignore-workspace`, and rebuild:
+recharts should now appear. That confirms the absence above was real rather than
+an artefact of a broken export. Revert both afterwards so the committed fixture
+stays the negative case.
 
 **Tree-shaking through the barrel.** The page imports seven parts. Search the
 built client chunks for something it does not import, such as

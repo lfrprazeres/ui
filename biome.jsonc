@@ -32,6 +32,7 @@
       // strict node_modules they could not import transitively anyway.
       "includes": [
         "src/index.ts",
+        "src/charts/index.ts",
         "src/elements/index.ts",
         "src/components/index.ts",
         "src/elements/sonner.tsx"
@@ -71,6 +72,37 @@
                 ]
               }
             }
+          }
+        }
+      }
+    },
+    {
+      // chart.tsx is the heaviest thing the shadcn registry ships and is taken
+      // verbatim. Every rule below fires on upstream code, and satisfying any
+      // of them would fork the file, which breaks the stronger invariant that
+      // `shadcn add chart` stays a safe command to re-run.
+      //
+      // Scoped to this one file on purpose. Do not promote it to
+      // src/elements/**: the rest of the directory passes these today.
+      "includes": ["src/elements/chart.tsx"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noExcessiveCognitiveComplexity": "off"
+          },
+          "performance": {
+            "noNamespaceImport": "off"
+          },
+          "security": {
+            "noDangerouslySetInnerHtml": "off"
+          },
+          "style": {
+            "useConsistentTypeDefinitions": "off"
+          },
+          "suspicious": {
+            "noArrayIndexKey": "off",
+            "noEqualsToNull": "off",
+            "noShadow": "off"
           }
         }
       }

@@ -28,10 +28,38 @@
     "limit": "50 kB"
   },
   {
+    "name": "Table, markup plus cn only",
+    "path": "dist/elements/index.js",
+    "import": "{ Table, TableBody, TableCell, TableHead, TableHeader, TableRow }",
+    "ignore": ["react", "react-dom"],
+    "limit": "9 kB"
+  },
+  {
+    "name": "DonutChart, our code only (recharts is an external peer)",
+    "path": "dist/charts/index.js",
+    "import": "{ DonutChart }",
+    "ignore": ["react", "react-dom"],
+    "limit": "15 kB"
+  },
+  {
     "name": "Everything, the whole surface",
     "path": "dist/index.js",
     "import": "*",
     "ignore": ["react", "react-dom"],
     "limit": "110 kB"
+  },
+  {
+    "name": "Elements tier, the recharts canary",
+    "path": "dist/elements/index.js",
+    "import": "*",
+    "ignore": ["react", "react-dom"],
+    "limit": "70 kB"
+  },
+  {
+    "name": "Components tier, the recharts canary",
+    "path": "dist/components/index.js",
+    "import": "*",
+    "ignore": ["react", "react-dom"],
+    "limit": "82 kB"
   }
 ]

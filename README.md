@@ -24,6 +24,13 @@ pnpm add @lfrprazeres/ui
 
 `react`, `react-dom` and `tailwindcss` are peer dependencies.
 
+`recharts` is an **optional** peer. Install it only if you import from
+`@lfrprazeres/ui/charts`:
+
+```bash
+pnpm add recharts
+```
+
 ## Setup
 
 Import the stylesheet once, at your CSS entry point:
@@ -61,15 +68,43 @@ import { Button } from "@lfrprazeres/ui/elements";
 import { StatTile } from "@lfrprazeres/ui/components";
 ```
 
-Both resolve to the same bytes. `Button` measures 9.59 kB either way.
+Charts are the exception: they ship only from their own entry point, never from
+the root barrel.
+
+```tsx
+import { DonutChart } from "@lfrprazeres/ui/charts"; // needs recharts
+```
+
+Both resolve to the same bytes. `Button` measures 9.58 kB either way, and the
+whole surface is 98 kB.
 
 ## What ships
 
-**Elements** (16): Avatar, Badge, Button, Card, Checkbox, Dialog, DropdownMenu,
-Input, Label, Popover, Select, Separator, Skeleton, Switch, Textarea, Toaster.
+**Elements** (17): Avatar, Badge, Button, Card, Checkbox, Dialog, DropdownMenu,
+Input, Label, Popover, Select, Separator, Skeleton, Switch, Table, Textarea,
+Toaster.
 
-**Components** (7): Chip, LanguageSwitcher, Marquee, MessageBubble, StatTile,
-StreamingDots, ThemeToggle.
+**Components** (9): Chip, FileDropzone, LanguageSwitcher, Marquee, MessageBubble,
+SearchCombobox, StatTile, StreamingDots, ThemeToggle.
+
+**Charts**, from `@lfrprazeres/ui/charts`: `Chart` (the recharts primitives),
+`DonutChart`, `LineChart`, plus `ChartFrame`, `ChartDataTable` and
+`ChartLegendList` for building your own. More chart types are coming; the rest
+of the recharts catalogue is a later release.
+
+### Why charts have their own entry point
+
+`recharts` is far heavier than everything else here combined, so charts ship
+from `@lfrprazeres/ui/charts` and nowhere else.
+
+Tree-shaking alone was not enough. Bundlers did drop recharts from the output,
+which is why `Button` never grew, but importing the root barrel in a runtime
+that does not bundle — plain Node, an un-bundled SSR path, a script — loaded 246
+recharts modules to get a `Button`. Now it loads none, and `pnpm check:charts`
+walks the built module graph on every release to assert recharts is unreachable
+from `.`, `/elements` and `/components`, and reachable from `/charts`.
+
+Because it is an optional peer, nothing installs it unless you ask for it.
 
 ## Tiers
 
@@ -81,6 +116,10 @@ StreamingDots, ThemeToggle.
 
 The library never ships features. If two projects need the same one, extract the
 reusable mechanism as a component and keep a thin feature on top of it in each.
+
+`charts` is not a fourth tier. It is a packaging boundary: `Chart` is an element
+and the charts built on it are components, grouped behind one entry point
+because they share a dependency heavy enough to be worth opting into.
 
 ## Palettes
 
@@ -137,12 +176,13 @@ the import comes back and needs re-inverting.
 | `pnpm build` | Builds the package with tsdown |
 | `pnpm check:rsc` | Fails if a `"use client"` directive was lost in the build |
 | `pnpm check:package` | publint plus are-the-types-wrong |
+| `pnpm check:charts` | Fails if recharts is reachable from a non-chart entry point |
 | `pnpm check:size` | size-limit budgets |
 
 ## Notes on the build
 
 Built unbundled, preserving module structure. That is load-bearing rather than a
-preference: bundling hoists or strips the `"use client"` directives thirteen
+preference: bundling hoists or strips the `"use client"` directives twenty-two
 modules depend on, and React Server Components then break with no error at all.
 `pnpm check:rsc` compares source against the build and fails if any went
 missing.

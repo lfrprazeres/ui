@@ -60,7 +60,7 @@
   --muted-foreground: var(--neutral-400);
   --accent: var(--neutral-800);
   --accent-foreground: var(--neutral-0);
-  --destructive: var(--neutral-0);
+  --destructive: var(--neutral-400);
   --border: var(--neutral-0);
   --input: var(--neutral-0);
   --ring: var(--neutral-0);

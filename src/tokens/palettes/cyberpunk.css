@@ -15,12 +15,12 @@
   --popover-foreground: var(--slate-950);
   --primary: var(--cyan-700);
   --primary-foreground: var(--slate-50);
-  --secondary: var(--fuchsia-600);
+  --secondary: var(--fuchsia-700);
   --secondary-foreground: var(--slate-50);
   --tertiary: var(--violet-600);
   --tertiary-foreground: var(--slate-50);
   --muted: var(--slate-100);
-  --muted-foreground: var(--slate-500);
+  --muted-foreground: var(--slate-600);
   --accent: var(--cyan-100);
   --accent-foreground: var(--cyan-900);
   --destructive: var(--rose-600);
@@ -40,8 +40,8 @@
   --sidebar-accent-foreground: var(--cyan-900);
   --sidebar-border: var(--slate-200);
   --sidebar-ring: var(--cyan-500);
-  --positive: var(--emerald-600);
-  --negative: var(--rose-600);
+  --positive: var(--emerald-700);
+  --negative: var(--rose-700);
 }
 
 .palette-cyberpunk.dark {

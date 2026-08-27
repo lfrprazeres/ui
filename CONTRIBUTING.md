@@ -91,6 +91,39 @@ deviation section, the way `Toaster` is.
 bare `Checkbox` or `Switch`, but the deeper reason is that a story is
 documentation, and an unlabelled example teaches a pattern that fails an audit.
 
+**A `play` function is a test on a story, not a reason for a new one.** If the
+rendered output is identical, attach the assertions to the existing story rather
+than adding a `KeyboardFoo` twin beside it. A sidebar entry should mean "there is
+something different to look at here"; four stories once existed purely to hold a
+play function and showed the reader nothing new.
+
+## Adding a chart
+
+A chart is an element or a component like any other; the tier rules do not
+change. What changes is the entry point.
+
+1. Write it in `src/charts/`. The vendored `Chart` primitives are the exception
+   and stay in `src/elements/chart.tsx`.
+2. **Do not** add it to `src/elements/index.ts` or `src/components/index.ts`.
+   Add it to `src/charts/index.ts` instead.
+3. Compose `ChartFrame`, and give it a `ChartDataTable`. That table is the only
+   text alternative a screen reader gets, and for the pie family it is the only
+   route to the numbers at all.
+4. Title its story `Charts/<Name>`.
+5. Run `pnpm build && pnpm check:charts`. It fails if recharts became reachable
+   from `.`, `/elements` or `/components`.
+
+**The re-scaffold trap.** `components.json` sets `aliases.ui` to `@/elements`,
+so `pnpm dlx shadcn@latest add chart` always writes `src/elements/chart.tsx`
+regardless of the exports map. That is exactly why the file was never moved into
+`src/charts/`: moving it would make every future re-scaffold create an
+unexported duplicate. Do not "fix" this by changing `aliases.ui` — that alias is
+what makes `shadcn add` work for the other seventeen elements.
+
+**The two-consumer rule is suspended for charts.** A visualisation catalogue is
+the product, not speculative surface, so chart types may be added ahead of a
+second consumer. Nothing else in the library gets that exemption.
+
 ## Adding a component
 
 Components compose two or more elements, own interaction, and carry no domain
