@@ -1,8 +1,13 @@
 export interface ChartDataTableRow {
   /** One cell per column after the first. */
   cells: string[];
-  /** Row header, typically the series or slice name. */
+  /** Row header, typically the formatted category or slice name. */
   header: string;
+  /**
+   * Stable identity. Distinct from `header` because a formatted category is not
+   * unique: a year of daily points renders a dozen rows all headed "Aug".
+   */
+  key: string;
 }
 
 export interface ChartDataTableProps {
@@ -44,7 +49,7 @@ export function ChartDataTable({
       </thead>
       <tbody>
         {rows.map((row) => (
-          <tr key={row.header}>
+          <tr key={row.key}>
             <th scope="row">{row.header}</th>
             {row.cells.map((cell, index) => (
               <td key={columns[index + 1] ?? String(index)}>{cell}</td>
