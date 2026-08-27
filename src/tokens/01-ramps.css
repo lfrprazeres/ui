@@ -136,6 +136,35 @@
   --rose-900: oklch(0.41 0.159 10);
   --rose-950: oklch(0.271 0.105 12);
 
+  /* Ink: paper and printer's black for the default palette. Warm like sand but
+     at a third of its chroma, so `base` and `gold` do not end up sharing a
+     ground and differing only in accent. */
+  --ink-50: oklch(0.985 0.003 60);
+  --ink-100: oklch(0.968 0.004 58);
+  --ink-200: oklch(0.932 0.005 56);
+  --ink-300: oklch(0.868 0.006 54);
+  --ink-400: oklch(0.72 0.007 52);
+  --ink-500: oklch(0.575 0.008 50);
+  --ink-600: oklch(0.452 0.008 50);
+  --ink-700: oklch(0.345 0.007 48);
+  --ink-800: oklch(0.248 0.006 46);
+  --ink-900: oklch(0.175 0.005 44);
+  --ink-950: oklch(0.118 0.004 44);
+
+  /* Vermilion. Orange-red at hue 33-38, clear of rose's pink (12-17) and of
+     gold's amber (76-78). */
+  --vermilion-50: oklch(0.96 0.02 38);
+  --vermilion-100: oklch(0.92 0.045 38);
+  --vermilion-200: oklch(0.86 0.08 38);
+  --vermilion-300: oklch(0.78 0.12 38);
+  --vermilion-400: oklch(0.7 0.16 38);
+  --vermilion-500: oklch(0.635 0.19 37);
+  --vermilion-600: oklch(0.565 0.195 36);
+  --vermilion-700: oklch(0.485 0.175 35);
+  --vermilion-800: oklch(0.41 0.145 34);
+  --vermilion-900: oklch(0.35 0.12 34);
+  --vermilion-950: oklch(0.24 0.08 33);
+
   /* Alpha overlays, for borders and translucent surfaces that are not ramp
      steps. A palette may not invent values, so every alpha a glass surface
      needs is declared here first. */
