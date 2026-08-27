@@ -6,4 +6,5 @@ export * from "./message-bubble";
 export * from "./search-combobox";
 export * from "./stat-tile";
 export * from "./streaming-dots";
+export * from "./surface";
 export * from "./theme-toggle";

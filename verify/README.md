@@ -48,8 +48,15 @@ chart, and `recharts` is an optional peer, so neither should exist anywhere:
 
 ```bash
 test -d node_modules/recharts && echo "FAIL: installed" || echo "PASS: not installed"
-grep -rl "recharts" .next && echo "FAIL: leaked into the build" || echo "PASS: absent"
+grep -rl "recharts" --include='*.js' .next/static .next/server   && echo "FAIL: leaked into the build" || echo "PASS: absent"
 ```
+
+The second grep is scoped to emitted JS on purpose. A bare `grep -rl "recharts"
+.next` reports a leak that is not there: the shipped stylesheet contains
+selectors such as `.[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground`
+which style recharts' DOM without importing it, and `.next/cache/turbopack` plus
+`required-server-files.json` mention it too. Those are class names and manifests,
+not modules.
 
 The first line tests the `peerDependenciesMeta.optional` flag against pnpm's
 `autoInstallPeers`, which would otherwise install it anyway and make the whole
