@@ -1,39 +1,45 @@
-/* Base palette. shadcn contract verbatim, every value a reference into a ramp. */
+/* Base palette: ink on paper, with one vermilion.
+
+   shadcn's contract verbatim, every value a reference into a ramp. The ground
+   is warm but nearly achromatic, so it reads as paper rather than as a tint,
+   and the accent is the only saturated thing on the page. That restraint is
+   what separates it from `minimal`, which is achromatic and square, and from
+   `gold`, whose whole identity is the warm amber. */
 
 :root {
-  --background: var(--neutral-0);
-  --foreground: var(--neutral-950);
+  --background: var(--ink-50);
+  --foreground: var(--ink-950);
   --card: var(--neutral-0);
-  --card-foreground: var(--neutral-950);
+  --card-foreground: var(--ink-950);
   --popover: var(--neutral-0);
-  --popover-foreground: var(--neutral-950);
-  --primary: var(--neutral-900);
-  --primary-foreground: var(--neutral-50);
-  --secondary: var(--neutral-100);
-  --secondary-foreground: var(--neutral-900);
-  --tertiary: var(--neutral-200);
-  --tertiary-foreground: var(--neutral-900);
-  --muted: var(--neutral-100);
-  --muted-foreground: var(--neutral-600);
-  --accent: var(--neutral-100);
-  --accent-foreground: var(--neutral-900);
+  --popover-foreground: var(--ink-950);
+  --primary: var(--vermilion-700);
+  --primary-foreground: var(--ink-50);
+  --secondary: var(--ink-100);
+  --secondary-foreground: var(--ink-900);
+  --tertiary: var(--ink-200);
+  --tertiary-foreground: var(--ink-900);
+  --muted: var(--ink-100);
+  --muted-foreground: var(--ink-600);
+  --accent: var(--vermilion-100);
+  --accent-foreground: var(--vermilion-900);
   --destructive: var(--rose-600);
-  --border: var(--neutral-200);
-  --input: var(--neutral-200);
-  --ring: var(--neutral-400);
-  --chart-1: var(--neutral-300);
-  --chart-2: var(--neutral-500);
-  --chart-3: var(--neutral-600);
-  --chart-4: var(--neutral-700);
-  --chart-5: var(--neutral-800);
-  --sidebar: var(--neutral-50);
-  --sidebar-foreground: var(--neutral-950);
-  --sidebar-primary: var(--neutral-900);
-  --sidebar-primary-foreground: var(--neutral-50);
-  --sidebar-accent: var(--neutral-100);
-  --sidebar-accent-foreground: var(--neutral-900);
-  --sidebar-border: var(--neutral-200);
-  --sidebar-ring: var(--neutral-400);
+  --border: var(--ink-200);
+  --input: var(--ink-200);
+  --ring: var(--vermilion-500);
+  --chart-1: var(--vermilion-300);
+  --chart-2: var(--vermilion-500);
+  --chart-3: var(--vermilion-700);
+  --chart-4: var(--ink-500);
+  --chart-5: var(--ink-700);
+  --sidebar: var(--ink-100);
+  --sidebar-foreground: var(--ink-950);
+  --sidebar-primary: var(--vermilion-700);
+  --sidebar-primary-foreground: var(--ink-50);
+  --sidebar-accent: var(--vermilion-100);
+  --sidebar-accent-foreground: var(--vermilion-900);
+  --sidebar-border: var(--ink-200);
+  --sidebar-ring: var(--vermilion-500);
   --positive: var(--emerald-700);
   --negative: var(--rose-700);
 
@@ -45,39 +51,39 @@
 }
 
 .dark {
-  --background: var(--neutral-950);
-  --foreground: var(--neutral-50);
-  --card: var(--neutral-900);
-  --card-foreground: var(--neutral-50);
-  --popover: var(--neutral-900);
-  --popover-foreground: var(--neutral-50);
-  --primary: var(--neutral-200);
-  --primary-foreground: var(--neutral-900);
-  --secondary: var(--neutral-800);
-  --secondary-foreground: var(--neutral-50);
-  --tertiary: var(--neutral-700);
-  --tertiary-foreground: var(--neutral-50);
-  --muted: var(--neutral-800);
-  --muted-foreground: var(--neutral-400);
-  --accent: var(--neutral-800);
-  --accent-foreground: var(--neutral-50);
+  --background: var(--ink-950);
+  --foreground: var(--ink-50);
+  --card: var(--ink-900);
+  --card-foreground: var(--ink-50);
+  --popover: var(--ink-900);
+  --popover-foreground: var(--ink-50);
+  --primary: var(--vermilion-400);
+  --primary-foreground: var(--ink-950);
+  --secondary: var(--ink-800);
+  --secondary-foreground: var(--ink-50);
+  --tertiary: var(--ink-700);
+  --tertiary-foreground: var(--ink-50);
+  --muted: var(--ink-800);
+  --muted-foreground: var(--ink-400);
+  --accent: var(--vermilion-950);
+  --accent-foreground: var(--vermilion-200);
   --destructive: var(--rose-400);
   --border: var(--overlay-white-10);
   --input: var(--overlay-white-15);
-  --ring: var(--neutral-500);
-  --chart-1: var(--neutral-300);
-  --chart-2: var(--neutral-500);
-  --chart-3: var(--neutral-600);
-  --chart-4: var(--neutral-700);
-  --chart-5: var(--neutral-800);
-  --sidebar: var(--neutral-900);
-  --sidebar-foreground: var(--neutral-50);
-  --sidebar-primary: var(--neutral-200);
-  --sidebar-primary-foreground: var(--neutral-900);
-  --sidebar-accent: var(--neutral-800);
-  --sidebar-accent-foreground: var(--neutral-50);
+  --ring: var(--vermilion-500);
+  --chart-1: var(--vermilion-300);
+  --chart-2: var(--vermilion-400);
+  --chart-3: var(--vermilion-500);
+  --chart-4: var(--ink-400);
+  --chart-5: var(--ink-300);
+  --sidebar: var(--ink-900);
+  --sidebar-foreground: var(--ink-50);
+  --sidebar-primary: var(--vermilion-400);
+  --sidebar-primary-foreground: var(--ink-950);
+  --sidebar-accent: var(--vermilion-950);
+  --sidebar-accent-foreground: var(--vermilion-200);
   --sidebar-border: var(--overlay-white-10);
-  --sidebar-ring: var(--neutral-500);
+  --sidebar-ring: var(--vermilion-500);
   --positive: var(--emerald-400);
   --negative: var(--rose-400);
 }
