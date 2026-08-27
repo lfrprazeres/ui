@@ -65,11 +65,21 @@ Both resolve to the same bytes. `Button` measures 9.59 kB either way.
 
 ## What ships
 
-**Elements** (16): Avatar, Badge, Button, Card, Checkbox, Dialog, DropdownMenu,
-Input, Label, Popover, Select, Separator, Skeleton, Switch, Textarea, Toaster.
+**Elements** (18): Avatar, Badge, Button, Card, Chart, Checkbox, Dialog,
+DropdownMenu, Input, Label, Popover, Select, Separator, Skeleton, Switch, Table,
+Textarea, Toaster.
 
-**Components** (7): Chip, LanguageSwitcher, Marquee, MessageBubble, StatTile,
-StreamingDots, ThemeToggle.
+**Components** (10): Chip, DonutChart, FileDropzone, LanguageSwitcher, Marquee,
+MessageBubble, SearchCombobox, StatTile, StreamingDots, ThemeToggle.
+
+### On the chart parts
+
+`Chart` and `DonutChart` bring in `recharts`, which is far heavier than anything
+else here: `DonutChart` measures 91 kB against `Button`'s 9.59 kB. It is a
+regular dependency rather than a peer, so nothing extra to install, and the
+build is unbundled with `sideEffects` declared, so it tree-shakes away entirely
+if you never import a chart. `Button` from the root barrel is the same 9.59 kB
+before and after this was added, and there is a size budget asserting it.
 
 ## Tiers
 

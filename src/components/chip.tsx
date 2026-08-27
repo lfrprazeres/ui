@@ -24,21 +24,28 @@ const chipVariants = cva(
   }
 );
 
-export type ChipProps = ComponentProps<"span"> &
-  VariantProps<typeof chipVariants> & {
-    icon?: ReactNode;
-    /** Renders as an anchor when set, keeping the same visual treatment. */
-    href?: string;
-  };
+type ChipOwnProps = VariantProps<typeof chipVariants> & {
+  icon?: ReactNode;
+};
+
+/*
+ * Discriminated on `href`, so the anchor branch accepts anchor attributes such
+ * as `target` and `rel`. Typing the whole thing as a span made those a type
+ * error on the very element that renders as a link.
+ */
+export type ChipProps = ChipOwnProps &
+  (
+    | ({ href: string } & Omit<ComponentProps<"a">, "href">)
+    | ({ href?: never } & ComponentProps<"span">)
+  );
 
 export function Chip({
   className,
   variant,
   size,
   icon,
-  href,
   children,
-  ...props
+  ...rest
 }: ChipProps) {
   const content = (
     <>
@@ -47,7 +54,8 @@ export function Chip({
     </>
   );
 
-  if (href) {
+  if (rest.href !== undefined) {
+    const { href, ...anchorProps } = rest;
     return (
       <a
         className={cn(
@@ -56,15 +64,19 @@ export function Chip({
           className
         )}
         href={href}
-        {...(props as ComponentProps<"a">)}
+        {...anchorProps}
       >
         {content}
       </a>
     );
   }
 
+  const { href: _omitted, ...spanProps } = rest;
   return (
-    <span className={cn(chipVariants({ size, variant }), className)} {...props}>
+    <span
+      className={cn(chipVariants({ size, variant }), className)}
+      {...spanProps}
+    >
       {content}
     </span>
   );
