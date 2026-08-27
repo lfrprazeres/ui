@@ -1,6 +1,6 @@
 {
   "name": "@lfrprazeres/ui",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A React design system: shadcn elements, composed components, and a three-tier token contract.",
   "keywords": [
     "react",
