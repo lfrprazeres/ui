@@ -80,45 +80,11 @@ function FruitSearch({ onPick }: { onPick?: (fruit: Fruit) => void }) {
   );
 }
 
-export const Default: Story = {
-  args: {
-    emptyLabel: "",
-    getOptionKey: () => "",
-    label: LABEL,
-    onQueryChange: () => undefined,
-    onSelect: () => undefined,
-    options: [],
-    query: "",
-    renderOption: () => null,
-  },
-  render: () => <FruitSearch />,
-};
-
-export const Loading: Story = {
-  args: {
-    emptyLabel: "No results",
-    getOptionKey: () => "",
-    label: LABEL,
-    loading: true,
-    loadingLabel: "Loading fruit…",
-    onQueryChange: () => undefined,
-    onSelect: () => undefined,
-    options: [],
-    query: "",
-    renderOption: () => null,
-  },
-  render: (args) => (
-    <div className="max-w-sm">
-      <SearchCombobox {...args} />
-    </div>
-  ),
-};
-
 /**
- * Focus never leaves the input. The active option is pointed at with
- * aria-activedescendant, which is what a screen reader announces.
+ * Also proves the ARIA combobox behaviour: focus never leaves the input, and
+ * the active option is pointed at with aria-activedescendant rather than moved.
  */
-export const KeyboardSelection: Story = {
+export const Default: Story = {
   args: {
     emptyLabel: "",
     getOptionKey: () => "",
@@ -146,4 +112,24 @@ export const KeyboardSelection: Story = {
     await waitFor(() => expect(canvas.queryByRole("listbox")).toBeNull());
   },
   render: () => <FruitSearch />,
+};
+
+export const Loading: Story = {
+  args: {
+    emptyLabel: "No results",
+    getOptionKey: () => "",
+    label: LABEL,
+    loading: true,
+    loadingLabel: "Loading fruit…",
+    onQueryChange: () => undefined,
+    onSelect: () => undefined,
+    options: [],
+    query: "",
+    renderOption: () => null,
+  },
+  render: (args) => (
+    <div className="max-w-sm">
+      <SearchCombobox {...args} />
+    </div>
+  ),
 };

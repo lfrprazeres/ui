@@ -13,6 +13,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/** Also proves the picker is reachable by keyboard, not just by pointer. */
 export const Default: Story = {
   args: {
     accept: ".csv,.pdf",
@@ -20,6 +21,12 @@ export const Default: Story = {
     label: "Drop files here, or click to browse",
     multiple: true,
     onFiles: () => undefined,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const zone = canvas.getByRole("button");
+    await userEvent.tab();
+    await expect(zone).toHaveFocus();
   },
 };
 
@@ -29,20 +36,6 @@ export const Disabled: Story = {
     hint: "Please wait",
     label: "Importing…",
     onFiles: () => undefined,
-  },
-};
-
-/** The picker is reachable by keyboard, not just by pointer. */
-export const KeyboardReachable: Story = {
-  args: {
-    label: "Drop files here, or click to browse",
-    onFiles: () => undefined,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const zone = canvas.getByRole("button");
-    await userEvent.tab();
-    await expect(zone).toHaveFocus();
   },
 };
 

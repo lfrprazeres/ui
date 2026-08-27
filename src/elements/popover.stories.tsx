@@ -17,20 +17,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/** Also proves the popover traps focus and dismisses on Escape. */
 export const Default: Story = {
-  render: () => (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="outline">Open popover</Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-72">
-        <p className="text-sm">Anchored content, dismissed on Escape.</p>
-      </PopoverContent>
-    </Popover>
-  ),
-};
-
-export const KeyboardDismiss: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const body = within(document.body);

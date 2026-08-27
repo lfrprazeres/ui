@@ -87,6 +87,12 @@ audit.
 Overlays need keyboard `play` functions covering focus trap, Escape and roving
 focus. axe does not check focus management.
 
+**A `play` function is a test on a story, not a reason for a new one.** If the
+rendered output is identical, attach the assertions to the existing story rather
+than adding a `KeyboardFoo` twin beside it. A sidebar entry should mean "there is
+something different to look at here"; four stories once existed purely to hold a
+play function and showed the reader nothing new.
+
 A JS-driven entrance needs an assertion that it reaches its final state.
 If the animation never runs, the element sits at its initial opacity and the
 content is invisible with nothing thrown.

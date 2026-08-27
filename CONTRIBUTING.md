@@ -91,6 +91,12 @@ deviation section, the way `Toaster` is.
 bare `Checkbox` or `Switch`, but the deeper reason is that a story is
 documentation, and an unlabelled example teaches a pattern that fails an audit.
 
+**A `play` function is a test on a story, not a reason for a new one.** If the
+rendered output is identical, attach the assertions to the existing story rather
+than adding a `KeyboardFoo` twin beside it. A sidebar entry should mean "there is
+something different to look at here"; four stories once existed purely to hold a
+play function and showed the reader nothing new.
+
 ## Adding a component
 
 Components compose two or more elements, own interaction, and carry no domain

@@ -28,36 +28,13 @@ const currency = (value: number) =>
     style: "currency",
   });
 
-export const Default: Story = {
-  args: { data: ALLOCATION, formatValue: currency, label: LABEL },
-  render: (args) => (
-    <div className="w-80">
-      <DonutChart {...args} />
-    </div>
-  ),
-};
-
-export const WithoutLegend: Story = {
-  args: { data: ALLOCATION, label: LABEL, legend: false },
-  render: (args) => (
-    <div className="w-64">
-      <DonutChart {...args} />
-    </div>
-  ),
-};
-
-export const Empty: Story = {
-  args: { data: [], emptyLabel: "Nothing to allocate yet", label: LABEL },
-};
-
 /**
- * The accessibility contract every chart inherits.
- *
- * A pie chart gets no accessibility layer from recharts, so the hidden data
- * table is the only route to the numbers. Asserting its cells also catches a
- * chart that silently renders nothing, which axe would never see.
+ * Also carries the accessibility contract every chart inherits. A pie chart
+ * gets no accessibility layer from recharts, so the hidden data table is the
+ * only route to the numbers; asserting its cells also catches a chart that
+ * silently renders nothing, which axe would never see.
  */
-export const AccessibleByDefault: Story = {
+export const Default: Story = {
   args: { data: ALLOCATION, formatValue: currency, label: LABEL },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -86,4 +63,17 @@ export const AccessibleByDefault: Story = {
       <DonutChart {...args} />
     </div>
   ),
+};
+
+export const WithoutLegend: Story = {
+  args: { data: ALLOCATION, label: LABEL, legend: false },
+  render: (args) => (
+    <div className="w-64">
+      <DonutChart {...args} />
+    </div>
+  ),
+};
+
+export const Empty: Story = {
+  args: { data: [], emptyLabel: "Nothing to allocate yet", label: LABEL },
 };
