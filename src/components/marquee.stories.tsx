@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, waitFor } from "storybook/test";
 import { Chip } from "@/components/chip";
 import { Marquee } from "@/components/marquee";
 
@@ -35,8 +36,21 @@ function Items() {
   );
 }
 
+/**
+ * Also proves the strip is actually moving. It is driven frame by frame rather
+ * than by a keyframe animation, which is what lets `pauseOnHover` hold position
+ * instead of snapping back to the start.
+ */
 export const Default: Story = {
   args: { children: null },
+  play: async ({ canvasElement }) => {
+    const track = canvasElement.querySelector(".w-max") as HTMLElement;
+    const before = getComputedStyle(track).transform;
+    await waitFor(
+      () => expect(getComputedStyle(track).transform).not.toBe(before),
+      { timeout: 2000 }
+    );
+  },
   render: () => (
     <div className="p-6">
       <Marquee>
@@ -53,7 +67,7 @@ export const FadedAndReversed: Story = {
       <Marquee fade>
         <Items />
       </Marquee>
-      <Marquee duration={18} fade reverse>
+      <Marquee duration={18} fade pauseOnHover reverse>
         <Items />
       </Marquee>
     </div>

@@ -19,6 +19,8 @@ const MODES = [
   { icon: MonitorIcon, label: "System", value: "system" },
 ] satisfies Mode[];
 
+export type ThemeToggleLabels = Record<ThemeMode, string>;
+
 function ThemeToggleOption({
   mode,
   active,
@@ -51,6 +53,16 @@ function ThemeToggleOption({
 
 export interface ThemeToggleProps {
   className?: string;
+  /**
+   * Accessible name for the group. Supply a translated string in a localised
+   * app, since the default is English.
+   */
+  groupLabel?: string;
+  /**
+   * Per-mode names, used for the tooltip and the accessible name of each
+   * button. Defaults to English; override to localise.
+   */
+  labels?: Partial<ThemeToggleLabels>;
   onValueChange: (value: ThemeMode) => void;
   /** The active mode. This component is controlled and holds no state. */
   value: ThemeMode;
@@ -61,10 +73,12 @@ export function ThemeToggle({
   value,
   onValueChange,
   className,
+  groupLabel = "Colour theme",
+  labels,
 }: ThemeToggleProps) {
   return (
     <fieldset
-      aria-label="Colour theme"
+      aria-label={groupLabel}
       className={cn(
         "inline-flex items-center gap-1 rounded-md border border-border bg-card p-1",
         className
@@ -74,7 +88,11 @@ export function ThemeToggle({
         <ThemeToggleOption
           active={mode.value === value}
           key={mode.value}
-          mode={mode}
+          mode={
+            labels?.[mode.value]
+              ? { ...mode, label: labels[mode.value] as string }
+              : mode
+          }
           onSelect={onValueChange}
         />
       ))}
