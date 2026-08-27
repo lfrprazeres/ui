@@ -34,6 +34,8 @@ export interface LineChartProps extends ChartBaseProps {
   formatX?: (value: string | number) => string;
   /** Draw the background grid. */
   grid?: boolean;
+  /** Minimum pixels between category ticks, to stop a dense axis crowding. */
+  minTickGap?: number;
   series: ChartSeries[];
   /** Replaces the default tooltip content entirely. */
   tooltip?: ComponentProps<typeof ChartTooltip>["content"];
@@ -60,6 +62,7 @@ export function LineChart({
   formatX,
   grid = true,
   label,
+  minTickGap,
   legend = true,
   series,
   tooltip,
@@ -70,6 +73,7 @@ export function LineChart({
   const { colors, columns, config, legendItems, rows } = useCartesianChart({
     data,
     formatValue,
+    formatX,
     series,
     xKey,
   });
@@ -98,6 +102,7 @@ export function LineChart({
           <XAxis
             axisLine={false}
             dataKey={xKey}
+            minTickGap={minTickGap}
             tickFormatter={formatX}
             tickLine={false}
             tickMargin={8}
