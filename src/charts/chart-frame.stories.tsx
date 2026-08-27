@@ -23,9 +23,9 @@ type Story = StoryObj<typeof meta>;
 const LABEL = "Requests by region";
 
 const ROWS = [
-  { cells: ["1,204"], header: "Europe" },
-  { cells: ["980"], header: "North America" },
-  { cells: ["612"], header: "South America" },
+  { cells: ["1,204"], header: "Europe", key: "eu" },
+  { cells: ["980"], header: "North America", key: "na" },
+  { cells: ["612"], header: "South America", key: "sa" },
 ];
 
 export const Default: Story = {

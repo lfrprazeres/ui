@@ -140,11 +140,10 @@ const TIMESTAMPED = Array.from({ length: 5 }, (_, index) => ({
 export const TimestampedCategories: Story = {
   args: {
     data: TIMESTAMPED,
+    // Month-only on purpose: every point collapses to the same header, which
+    // is what exposed rows being keyed by their display text.
     formatX: (value) =>
-      new Date(Number(value)).toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-      }),
+      new Date(Number(value)).toLocaleDateString("en-GB", { month: "short" }),
     label: "Close by day",
     legend: false,
     minTickGap: 32,
@@ -155,10 +154,18 @@ export const TimestampedCategories: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const table = canvas.getByRole("table", { name: "Close by day" });
-    await expect(
-      within(table).getByRole("rowheader", { name: "05 Jan" })
-    ).toBeInTheDocument();
+
+    // Formatted, not raw: a screen reader must not hear a unix timestamp.
     await expect(within(table).queryByText(RAW_TIMESTAMP)).toBeNull();
+
+    // Every point still gets a row even though all five share a header.
+    // Keying rows by display text silently collided here.
+    await expect(within(table).getAllByRole("rowheader")).toHaveLength(
+      TIMESTAMPED.length
+    );
+    await expect(within(table).getAllByRole("rowheader")[0]).toHaveTextContent(
+      "Jan"
+    );
   },
   render: (args) => (
     <div className="w-[520px]">

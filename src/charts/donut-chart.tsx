@@ -80,6 +80,7 @@ export function DonutChart({
           rows={data.map((slice) => ({
             cells: [format(slice.value), share(slice.value, total)],
             header: slice.label ?? slice.name,
+            key: slice.name,
           }))}
         />
       }

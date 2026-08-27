@@ -89,6 +89,7 @@ export function useCartesianChart({
             : String(value ?? "");
         }),
         header: formatCategory(row[xKey], formatX),
+        key: String(row[xKey] ?? ""),
       })),
     [data, format, formatX, series, xKey]
   );
