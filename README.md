@@ -80,9 +80,9 @@ whole surface is 98 kB.
 
 ## What ships
 
-**Elements** (17): Avatar, Badge, Button, Card, Checkbox, Dialog, DropdownMenu,
+**Elements** (19): Avatar, Badge, Button, Card, Checkbox, Dialog, DropdownMenu,
 Input, Label, Popover, Select, Separator, Skeleton, Switch, Table, Textarea,
-Toaster.
+Toaster, Toggle, ToggleGroup.
 
 **Components** (9): Chip, FileDropzone, LanguageSwitcher, Marquee, MessageBubble,
 SearchCombobox, StatTile, StreamingDots, ThemeToggle.

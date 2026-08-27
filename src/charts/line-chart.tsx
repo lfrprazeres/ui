@@ -1,5 +1,6 @@
 "use client";
 
+import type { ComponentProps } from "react";
 import {
   CartesianGrid,
   Line,
@@ -18,11 +19,26 @@ import {
   ChartTooltipContent,
 } from "@/elements/chart";
 
+export interface LineChartValueAxis {
+  /** Scale to the data range instead of anchoring at zero. */
+  fit?: boolean;
+  orientation?: "left" | "right";
+  width?: number;
+}
+
 export interface LineChartProps extends ChartBaseProps {
   data: ChartRow[];
   /** Draws points as well as the line. */
   dots?: boolean;
+  /** Formats the category axis ticks, e.g. a timestamp into a date. */
+  formatX?: (value: string | number) => string;
+  /** Draw the background grid. */
+  grid?: boolean;
   series: ChartSeries[];
+  /** Replaces the default tooltip content entirely. */
+  tooltip?: ComponentProps<typeof ChartTooltip>["content"];
+  /** Value-axis options, or false to hide it. */
+  valueAxis?: false | LineChartValueAxis;
   /** Key on each row holding the category or time value. */
   xKey: string;
 }
@@ -41,11 +57,16 @@ export function LineChart({
   dots = false,
   emptyLabel,
   formatValue,
+  formatX,
+  grid = true,
   label,
   legend = true,
   series,
+  tooltip,
+  valueAxis,
   xKey,
 }: LineChartProps) {
+  const axis = valueAxis === false ? null : (valueAxis ?? {});
   const { colors, columns, config, legendItems, rows } = useCartesianChart({
     data,
     formatValue,
@@ -71,15 +92,28 @@ export function LineChart({
         initialDimension={{ height: 240, width: 420 }}
       >
         <RechartsLine data={data} margin={{ left: 4, right: 8, top: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          {grid ? (
+            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          ) : null}
           <XAxis
             axisLine={false}
             dataKey={xKey}
+            tickFormatter={formatX}
             tickLine={false}
             tickMargin={8}
           />
-          <YAxis axisLine={false} tickLine={false} tickMargin={8} width={48} />
-          <ChartTooltip content={<ChartTooltipContent />} />
+          {axis ? (
+            <YAxis
+              axisLine={false}
+              domain={axis.fit ? ["dataMin", "dataMax"] : undefined}
+              orientation={axis.orientation ?? "left"}
+              tickFormatter={formatValue}
+              tickLine={false}
+              tickMargin={8}
+              width={axis.width ?? 48}
+            />
+          ) : null}
+          <ChartTooltip content={tooltip ?? <ChartTooltipContent />} />
           {series.map((entry, index) => (
             <Line
               dataKey={entry.key}

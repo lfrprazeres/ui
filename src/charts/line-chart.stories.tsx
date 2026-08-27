@@ -98,3 +98,27 @@ export const Empty: Story = {
     xKey: "month",
   },
 };
+
+/**
+ * A price series: no grid, the value axis on the right and fitted to the data
+ * rather than anchored at zero, and formatted ticks on both axes. This is the
+ * shape a ticker chart needs.
+ */
+export const PriceSeries: Story = {
+  args: {
+    data: MONTHS,
+    formatValue: (value: number) => `$${value.toLocaleString()}`,
+    formatX: (value) => String(value).slice(0, 3).toUpperCase(),
+    grid: false,
+    label: "Closing price by month",
+    legend: false,
+    series: [{ key: "revenue", label: "Close" }],
+    valueAxis: { fit: true, orientation: "right", width: 64 },
+    xKey: "month",
+  },
+  render: (args) => (
+    <div className="w-[520px]">
+      <LineChart {...args} />
+    </div>
+  ),
+};
