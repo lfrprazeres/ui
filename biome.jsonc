@@ -50,13 +50,19 @@
       // the CLI. It is formatted to house style so diffs stay readable, but
       // authoring rules that would force a fork are relaxed here:
       //
-      //   noLeakedRender  - false positive, the guards are typed booleans
+      //   noLeakedRender     - false positive, the guards are typed booleans
+      //   noNamespaceImport  - `import * as React` is upstream's style, and it
+      //                        is a value import wherever React.createContext
+      //                        or a hook is used, so it cannot be narrowed
       //
       // The 200-line cap is likewise not applied to this directory
       // (dropdown-menu is a ~257-line compound component upstream).
       "includes": ["src/elements/**"],
       "linter": {
         "rules": {
+          "performance": {
+            "noNamespaceImport": "off"
+          },
           "suspicious": {
             "noLeakedRender": "off"
           },
@@ -89,9 +95,6 @@
         "rules": {
           "complexity": {
             "noExcessiveCognitiveComplexity": "off"
-          },
-          "performance": {
-            "noNamespaceImport": "off"
           },
           "security": {
             "noDangerouslySetInnerHtml": "off"
