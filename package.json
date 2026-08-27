@@ -23,8 +23,9 @@
   "type": "module",
   "exports": {
     ".": "./dist/index.js",
-    "./elements": "./dist/elements/index.js",
+    "./charts": "./dist/charts/index.js",
     "./components": "./dist/components/index.js",
+    "./elements": "./dist/elements/index.js",
     "./styles.css": "./dist/styles.css",
     "./tokens/*": "./dist/tokens/*"
   },
@@ -35,12 +36,13 @@
     "build": "tsdown",
     "build-storybook": "storybook build",
     "check": "ultracite check",
+    "check:charts": "node scripts/check-chart-isolation.mjs",
     "check:package": "publint && attw --pack . --profile esm-only --exclude-entrypoints styles.css",
     "check:rsc": "node scripts/check-rsc-directives.mjs",
     "check:size": "size-limit",
     "fix": "ultracite fix",
     "prepare": "husky",
-    "prepublishOnly": "pnpm build && pnpm check:rsc && pnpm check:package && pnpm check:size",
+    "prepublishOnly": "pnpm build && pnpm check:rsc && pnpm check:charts && pnpm check:package && pnpm check:size",
     "storybook": "storybook dev -p 6006",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
@@ -51,7 +53,6 @@
     "lucide-react": "^1.34.0",
     "motion": "^13.1.1",
     "radix-ui": "^1.6.7",
-    "recharts": "3.8.0",
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.6.0"
   },
@@ -78,6 +79,7 @@
     "publint": "^0.3.24",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "recharts": "^3.8.0",
     "size-limit": "^13.0.3",
     "storybook": "^10.5.10",
     "tailwindcss": "^4.3.3",
@@ -90,7 +92,13 @@
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "recharts": "^3.8.0",
     "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "recharts": {
+      "optional": true
+    }
   },
   "packageManager": "pnpm@11.23.0",
   "engines": {

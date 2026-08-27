@@ -21,7 +21,12 @@ export default defineConfig({
     { from: "src/styles.css", to: "dist" },
   ],
   dts: true,
-  entry: ["src/index.ts", "src/elements/index.ts", "src/components/index.ts"],
+  entry: [
+    "src/index.ts",
+    "src/charts/index.ts",
+    "src/components/index.ts",
+    "src/elements/index.ts",
+  ],
   external: ["react", "react-dom", "react/jsx-runtime", "tailwindcss"],
   format: "esm",
   platform: "neutral",

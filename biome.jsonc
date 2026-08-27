@@ -32,6 +32,7 @@
       // strict node_modules they could not import transitively anyway.
       "includes": [
         "src/index.ts",
+        "src/charts/index.ts",
         "src/elements/index.ts",
         "src/components/index.ts",
         "src/elements/sonner.tsx"

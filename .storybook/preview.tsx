@@ -93,6 +93,7 @@ const preview: Preview = {
           ],
           "Elements",
           "Components",
+          "Charts",
         ],
       },
     },

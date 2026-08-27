@@ -35,17 +35,31 @@
     "limit": "9 kB"
   },
   {
-    "name": "DonutChart, pulls in recharts",
-    "path": "dist/components/index.js",
+    "name": "DonutChart, our code only (recharts is an external peer)",
+    "path": "dist/charts/index.js",
     "import": "{ DonutChart }",
     "ignore": ["react", "react-dom"],
-    "limit": "120 kB"
+    "limit": "15 kB"
   },
   {
     "name": "Everything, the whole surface",
     "path": "dist/index.js",
     "import": "*",
     "ignore": ["react", "react-dom"],
-    "limit": "195 kB"
+    "limit": "110 kB"
+  },
+  {
+    "name": "Elements tier, the recharts canary",
+    "path": "dist/elements/index.js",
+    "import": "*",
+    "ignore": ["react", "react-dom"],
+    "limit": "70 kB"
+  },
+  {
+    "name": "Components tier, the recharts canary",
+    "path": "dist/components/index.js",
+    "import": "*",
+    "ignore": ["react", "react-dom"],
+    "limit": "82 kB"
   }
 ]

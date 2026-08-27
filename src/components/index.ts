@@ -1,5 +1,4 @@
 export * from "./chip";
-export * from "./donut-chart";
 export * from "./file-dropzone";
 export * from "./language-switcher";
 export * from "./marquee";

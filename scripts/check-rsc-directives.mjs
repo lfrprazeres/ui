@@ -12,7 +12,7 @@ import process from "node:process";
  * and fails the release if any went missing.
  */
 
-const TIERS = ["elements", "components"];
+const TIERS = ["charts", "components", "elements"];
 const DIRECTIVE = "use client";
 
 function modulesWithDirective(dir, extension) {
