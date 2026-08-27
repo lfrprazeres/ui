@@ -13,7 +13,7 @@ Built for React 19 and Tailwind CSS v4. ESM only.
 > the bits you like. Just know that the API moves when my projects need it to,
 > which is why it stays on `0.x`. Pin an exact version if that matters to you.
 
-**[Component docs and live playground](https://lfrprazeres.github.io/ui)** ·
+**[Component docs and live playground](https://lfrprazeres.dev/ui)** ·
 [Changelog](./CHANGELOG.md)
 
 ## Install
