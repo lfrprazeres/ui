@@ -122,3 +122,47 @@ export const PriceSeries: Story = {
     </div>
   ),
 };
+
+const RAW_TIMESTAMP = /^17\d{11}$/;
+const DAY = 86_400_000;
+const SERIES_START = Date.UTC(2026, 0, 5);
+
+const TIMESTAMPED = Array.from({ length: 5 }, (_, index) => ({
+  close: 30 + index,
+  time: SERIES_START + index * DAY,
+}));
+
+/**
+ * A timestamped series. The data table has to read the formatted category, not
+ * the raw value: a screen reader announcing "1756213200000" is no alternative
+ * at all.
+ */
+export const TimestampedCategories: Story = {
+  args: {
+    data: TIMESTAMPED,
+    formatX: (value) =>
+      new Date(Number(value)).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short",
+      }),
+    label: "Close by day",
+    legend: false,
+    minTickGap: 32,
+    series: [{ key: "close", label: "Close" }],
+    valueAxis: { fit: true, orientation: "right" },
+    xKey: "time",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const table = canvas.getByRole("table", { name: "Close by day" });
+    await expect(
+      within(table).getByRole("rowheader", { name: "05 Jan" })
+    ).toBeInTheDocument();
+    await expect(within(table).queryByText(RAW_TIMESTAMP)).toBeNull();
+  },
+  render: (args) => (
+    <div className="w-[520px]">
+      <LineChart {...args} />
+    </div>
+  ),
+};

@@ -8,6 +8,8 @@ import type { ChartConfig } from "@/elements/chart";
 export interface CartesianChartInput {
   data: ChartRow[];
   formatValue?: (value: number) => string;
+  /** Same formatter the category axis uses, so the table reads the same way. */
+  formatX?: (value: string | number) => string;
   series: ChartSeries[];
   xKey: string;
 }
@@ -22,9 +24,20 @@ export interface CartesianChartInput {
  * wrapping `XAxis` and friends in a helper component makes them invisible to
  * it. They stay inline in each chart on purpose.
  */
+function formatCategory(
+  value: ChartRow[string],
+  formatX?: (input: string | number) => string
+): string {
+  if (value === null || value === undefined) {
+    return "";
+  }
+  return formatX ? formatX(value) : String(value);
+}
+
 export function useCartesianChart({
   data,
   formatValue,
+  formatX,
   series,
   xKey,
 }: CartesianChartInput) {
@@ -75,9 +88,9 @@ export function useCartesianChart({
             ? format(value)
             : String(value ?? "");
         }),
-        header: String(row[xKey] ?? ""),
+        header: formatCategory(row[xKey], formatX),
       })),
-    [data, format, series, xKey]
+    [data, format, formatX, series, xKey]
   );
 
   return { colors, columns, config, legendItems, rows };
