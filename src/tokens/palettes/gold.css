@@ -34,8 +34,8 @@
   --sidebar-accent-foreground: var(--gold-900);
   --sidebar-border: var(--sand-200);
   --sidebar-ring: var(--gold-500);
-  --positive: var(--emerald-600);
-  --negative: var(--rose-600);
+  --positive: var(--emerald-700);
+  --negative: var(--rose-700);
 }
 
 .palette-gold.dark {
